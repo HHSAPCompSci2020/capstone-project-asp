@@ -19,9 +19,9 @@ public class PowerUp {
 		return doesJump;
 	}
 	
-	public Card affect(Card c) {
+	public void affect(Card c) {
 		
-		return null;
+	
 	}
 	
 }

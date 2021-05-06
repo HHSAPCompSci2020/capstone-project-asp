@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Level {
 
-	private char[][] tiles;
-	private ArrayList<PowerUp> p;
-	private ArrayList<Card> c;
+	public char[][] tiles;
+	public ArrayList<PowerUp> p;
+	public ArrayList<Card> c;
 	
 	public Level() {
 		
@@ -118,8 +118,23 @@ public class Level {
 						String line = in.nextLine();
 						for(int i = 0; i < line.length(); i++) {
 							
+							if(line.charAt(i) == 'A') {
+								powerups.add(new PowerUp(1,0,false));
+								
+							}
+							if(line.charAt(i) == 'B') {
+								powerups.add(new PowerUp(2,0,false));
+								
+							}
+							if(line.charAt(i) == 'C') {
+								powerups.add(new PowerUp(0,1,true));
+								
+							}
 							
-							
+							if(line.charAt(i) == 'D') {
+								powerups.add(new PowerUp(0,2,true));
+								
+							}
 							
 						}
 							
