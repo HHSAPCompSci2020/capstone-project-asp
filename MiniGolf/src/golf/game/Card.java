@@ -1,5 +1,9 @@
 package golf.game;
-
+/***
+ * 
+ * @author Savio
+ *
+ */
 public class Card {
 
 	private int magnitude;

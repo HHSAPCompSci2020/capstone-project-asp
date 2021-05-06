@@ -1,6 +1,11 @@
 package golf.game;
 import java.awt.Point;
 import java.awt.Rectangle;
+/**
+ * 
+ * @author Ansel
+ *
+ */
 
 public class LevelSelect extends Screen{
 

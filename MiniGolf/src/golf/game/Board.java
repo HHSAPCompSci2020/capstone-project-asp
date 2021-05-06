@@ -2,6 +2,12 @@ package golf.game;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.logging.Level;
+/**
+ * 
+ * @author Pranav
+ *
+ */
+
 
 public class Board extends Screen{
 	private Level l;

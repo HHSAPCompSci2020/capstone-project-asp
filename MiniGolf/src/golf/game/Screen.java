@@ -1,5 +1,9 @@
 package golf.game;
-
+/**
+ * 
+ * @author Shelby
+ *
+ */
 public abstract class Screen implements ScreenSwitcher{
 
     public final int DRAWING_WIDTH, DRAWING_HEIGHT;

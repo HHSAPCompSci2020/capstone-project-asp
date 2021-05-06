@@ -1,6 +1,9 @@
 package golf.game;
 
 import java.awt.Point;
+/**
+ * @author Ansel
+ */
 import java.awt.Rectangle;
 
 public class Settings extends Screen{

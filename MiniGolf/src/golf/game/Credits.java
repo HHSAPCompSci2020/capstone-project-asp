@@ -1,7 +1,12 @@
 package golf.game;
 import java.awt.Point;
 import java.awt.Rectangle;
-
+/**
+ * 
+ * 
+ * @author Savio
+ *
+ */
 public class Credits extends Screen{
 		
 	private DrawingSurface surface;

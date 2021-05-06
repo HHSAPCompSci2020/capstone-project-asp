@@ -1,5 +1,9 @@
 package golf.game;
-
+/***
+ * 
+ * @author Pranav & Savio
+ *
+ */
 public class PowerUp {
 
 	private int magnitude;

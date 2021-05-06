@@ -1,6 +1,10 @@
 package golf.game;
 import java.awt.Color;
-
+/**
+ * 
+ * @author Savio
+ *
+ */
 public class Player {
 
 	private float x;

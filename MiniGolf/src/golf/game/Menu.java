@@ -1,7 +1,11 @@
 package golf.game;
 import java.awt.Point;
 import java.awt.Rectangle;
-
+/**
+ * 
+ * @author Savio
+ *
+ */
 public class Menu extends Screen{
 
 	private DrawingSurface surface;

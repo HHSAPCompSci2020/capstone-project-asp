@@ -5,6 +5,11 @@ import javax.swing.JFrame;
 
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
+/**
+ * 
+ * @author Shelby
+ *
+ */
 
 public class Main {
 
