@@ -14,26 +14,17 @@ public class PowerUp {
 		doesJump = j;
 	}
 	
-	/*
-	 * @return magnitude of the powerup
-	 */
-	public int getMagnitude() {
-		return magnitude;
-	}
 	
-	/*
-	 * @return if it allows a jump
-	 */
-	public boolean getDoesJump() {
-		return doesJump;
-	}
 	
-	/*
+	/**
 	 * changes the card based on the powerup
-	 */
-	public Card affect(Card c) {
+	 * @param Card c - the card that will be affected by this power
+	 * @pre c must not be null
+	 * @post c will have a different momentum and jmomentum via setter methods
+	 **/
+	public void affect(Card c) {
 		
-		return null;
+		
 	}
 	
 }

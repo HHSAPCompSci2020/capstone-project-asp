@@ -13,7 +13,11 @@ public class Level {
 	public Level() {
 		
 	}
-	
+	/**
+	 * Adds the stuff in the file to gamedata
+	 * @param filename The file to read from
+	 * @param gameData the board of characters
+	 */
 	public void readData (String filename, char[][] gameData) {
 		File dataFile = new File(filename);
 
@@ -46,7 +50,12 @@ public class Level {
 			throw new IllegalArgumentException("Data file " + filename + " does not exist.");
 		}
 	}
-	
+	/**Loads in the cards depending on the file
+	 * @pre cards must be initialized
+	 * @post cards will have cards added to it
+	 * @param filename the name of the file which has all of the data needed
+	 * @param cards ArrayList of cards which has all the cards for this level
+	 */
 	public void readData(String filename, ArrayList<Card> cards) { 
 		File dataFile = new File(filename);
 
@@ -102,7 +111,14 @@ public class Level {
 			throw new IllegalArgumentException("Data file " + filename + " does not exist.");
 		}
 		
-	}
+	}	
+	
+	/**Loads in the Poweruups depending on the file
+	 * @pre powerups must be initialized
+	 * @post powerups will have powerups added to it
+	 * @param filename the name of the file which has all of the data needed
+	 * @param powerups ArrayList of powerups which has all the powerups for this level
+	 */
 	public void readData(String filename, ArrayList<PowerUp> powerups, boolean is) {
 		File dataFile = new File(filename);
 
