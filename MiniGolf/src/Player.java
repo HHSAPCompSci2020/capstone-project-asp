@@ -1,28 +1,47 @@
+import java.awt.Color;
 
 public class Player {
 
 	private float x;
 	private float y;
 	
-	public Player(float x, float y) {
+	/*
+	 * creates a new player with the given location
+	 *  @param x-location for the player
+	 *  @param y-location for the player
+	 */
+	public Player(float x, float y, Color playerColor) {
 		this.x = x;
 		this.y = y;
 	}
 	
 	
-	
+	/*
+	 * Returns X of the player
+	 * @return x-value
+	 */
 	public float getX(){
 		return x;
 	}
 	
+	/*
+	 * returns the Y of the player 
+	 * @return y-value
+	 */
 	public float getY() {
 		return y;
 	}
 	
+	/*
+	 * sets the x-value of the player
+	 */
 	public void setX(float x) {
 		this.x = x;
 	}
 	
+	/*
+	 * sets the y-value of the player
+	 */
 	public void setY(float y) {
 		this.y = y;
 	}
