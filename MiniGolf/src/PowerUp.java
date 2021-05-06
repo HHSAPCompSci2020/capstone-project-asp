@@ -28,12 +28,14 @@ public class PowerUp {
 		return doesJump;
 	}
 	
+
 	/*
 	 * changes the card based on the powerup
 	 */
-	public Card affect(Card c) {
+	public void affect(Card c) {
+
 		
-		return null;
+	
 	}
 	
 }
