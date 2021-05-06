@@ -24,6 +24,9 @@ public class Credits extends Screen{
         String str = "back";
         float w = surface.textWidth(str);
         surface.text(str, back.x+back.width/2-w/2, back.y+back.height/2);
+        surface.textSize(25);
+        surface.text("Coded by Pranav, Ansel and Savio", 250, 300);
+        surface.text("Inspired by Golf Peaks", 250, 400);
         
         surface.popStyle();
     }
