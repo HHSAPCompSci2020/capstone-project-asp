@@ -1,3 +1,4 @@
+package golf.game;
 import java.awt.Color;
 
 public class Player {

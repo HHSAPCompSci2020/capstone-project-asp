@@ -1,3 +1,4 @@
+package golf.game;
 
 public abstract class Screen implements ScreenSwitcher{
 
