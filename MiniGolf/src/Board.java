@@ -1,5 +1,10 @@
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Board extends Screen{
 	
@@ -42,5 +47,6 @@ public class Board extends Screen{
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }
