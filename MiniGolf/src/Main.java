@@ -7,6 +7,9 @@ import processing.core.PApplet;
 
 public class Main {
 
+	/*
+	 * Creates a window
+	 */
     public static void main(String args[]) {
 
         DrawingSurface drawing = new DrawingSurface();

@@ -4,43 +4,47 @@ public class Player {
 
 	private float x;
 	private float y;
+	private int color;
 	
 	/*
 	 * creates a new player with the given location
 	 *  @param x-location for the player
 	 *  @param y-location for the player
 	 */
-	public Player(float x, float y, Color playerColor) {
+	public Player(float x, float y, int color) {
 		this.x = x;
 		this.y = y;
+		
+		if(color == 1)
+		{
+			
+		}
 	}
 	
 	
 	/*
-	 * Returns X of the player
-	 * @return x-value
+	 * @return x-value of the player
 	 */
 	public float getX(){
 		return x;
 	}
 	
 	/*
-	 * returns the Y of the player 
-	 * @return y-value
+	 * @return y-value of the player
 	 */
 	public float getY() {
 		return y;
 	}
 	
 	/*
-	 * sets the x-value of the player
+	 *@param x-value of the player
 	 */
 	public void setX(float x) {
 		this.x = x;
 	}
 	
 	/*
-	 * sets the y-value of the player
+	 * @param y-value of the player
 	 */
 	public void setY(float y) {
 		this.y = y;
