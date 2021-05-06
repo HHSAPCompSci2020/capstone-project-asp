@@ -5,12 +5,14 @@ public class LevelSelect extends Screen{
 
 	private DrawingSurface surface;
 	private Rectangle level1;
+	private Rectangle back;
 	
 	public LevelSelect(DrawingSurface drawingSurface) {
 		super (800, 800);
 		surface = drawingSurface;
 		
-		level1 = new Rectangle(400, 200, 200, 100);
+		level1 = new Rectangle(300, 200, 200, 100);
+		back = new Rectangle(100, 100, 100, 100);
 	}
 
 	public void draw() {
@@ -21,9 +23,16 @@ public class LevelSelect extends Screen{
 
         surface.rect(level1.x, level1.y, level1.width, level1.height, 10, 10, 10, 10);
         surface.fill(0);
-        String str = "Click me!";
+        String str = "level 1";
         float w = surface.textWidth(str);
         surface.text(str, level1.x+level1.width/2-w/2, level1.y+level1.height/2);
+        
+        surface.noFill();
+        surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
+        surface.fill(0);
+        str = "Back";
+        w = surface.textWidth(str);
+        surface.text(str, back.x+back.width/2-w/2, back.y+back.height/2);
 
         surface.popStyle();
     }
@@ -31,7 +40,9 @@ public class LevelSelect extends Screen{
     public void mousePressed() {
         Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
         if (level1.contains(p))
-            surface.switchScreen(ScreenSwitcher.SCREEN2);
+            surface.switchScreen(ScreenSwitcher.SCREEN4);
+        if (back.contains(p))
+        	surface.switchScreen(ScreenSwitcher.SCREEN1);
     }
 	
 	@Override
