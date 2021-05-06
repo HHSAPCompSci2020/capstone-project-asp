@@ -50,6 +50,41 @@ public class Player {
 		this.y = y;
 	}
 	
+	
+	/*
+	 * Moves the player according to the parameters, and executes
+	 * the correct behavior based on the tiles it lands on.
+	 */
+	public void move(Card c, Level l, PowerUp p, int dir) {
+		//sets values based on the direction, 1 is up, 2 is down, 3 is right, 4 is left
+		int dx = 0;
+		int dy = 0;
+		if(dir == 1)
+			dy = -1;
+		else if (dir == 2)
+			dy = 1;
+		else if (dir == 3)
+			dx = 1;
+		else if (dir == 4)
+			dx = -1;
+		
+		//applies powerup if applicable
+		if(p != null)
+			p.affect(c);
+
+		//jumps
+		if (c.getJMagnitude() != 0) {
+			char here = l.tiles[(int) (x+dx)][(int) (y+dy)];
+			
+			
+		}
+		
+		//move
+		for(int i = 0; i < c.getMagnitude(); i++) {
+			
+		}
+		
+	}
 //	public move(Card c, level l, PowerUp p , int dir){
 //		if(p != null){
 //		p.affect(c);
