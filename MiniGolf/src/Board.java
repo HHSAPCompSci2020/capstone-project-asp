@@ -1,10 +1,11 @@
+import java.awt.Point;
+import java.awt.Rectangle;
 
 public class Board extends Screen{
-	
-	private Player p;
 	private Level l;
 	private boolean isMoving;
 	private DrawingSurface surface;
+	private Rectangle back;
 	
 	/*
 	 * Creates a new Board Screen
@@ -14,12 +15,35 @@ public class Board extends Screen{
 		super(800, 800);
 		surface = drawingSurface;
 		
+		back = new Rectangle(100, 100, 100, 100);
 	}
+	
+	public void draw() {
+
+        surface.pushStyle();
+
+        surface.background(255,255,255);
+
+        surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
+        surface.fill(0);
+        String str = "back";
+        float w = surface.textWidth(str);
+        surface.text(str, back.x+back.width/2-w/2, back.y+back.height/2);
+        
+        surface.popStyle();
+    }
+
+    public void mousePressed() {
+        Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
+        if (back.contains(p))
+            surface.switchScreen(ScreenSwitcher.SCREEN3);
+    }
 
 	@Override
 	public void switchScreen(int i) {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }
