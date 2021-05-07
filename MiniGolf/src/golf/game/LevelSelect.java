@@ -3,8 +3,6 @@ package golf.game;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import g4p_controls.GImageButton;
-
 /**
  * 
  * @author Ansel
@@ -16,7 +14,6 @@ public class LevelSelect extends Screen {
 	private DrawingSurface surface;
 	private Rectangle level1;
 	private Rectangle back;
-	private GImageButton level;
 	private String files[];
 
 	/*
@@ -27,11 +24,10 @@ public class LevelSelect extends Screen {
 	public LevelSelect(DrawingSurface drawingSurface) {
 		super(800, 800);
 		surface = drawingSurface;
-		files = new String[] { "ballRED.png", "ballBLACK.png", "ballYELLOW.png" };
+
 		level1 = new Rectangle(300, 200, 200, 100);
 		back = new Rectangle(100, 100, 100, 100);
 		level1 = new Rectangle(400, 200, 200, 100);
-		level = new GImageButton(drawingSurface, 20, 14, files, "ballSWAG.png");
 	}
 
 	/*
