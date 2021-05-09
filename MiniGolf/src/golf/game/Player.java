@@ -1,8 +1,10 @@
 package golf.game;
 import java.awt.Color;
+import java.awt.Point;
 
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
 /**
  * 
  * @author Savio
@@ -26,11 +28,7 @@ public class Player {
 		this.y = y;
 		startX = x;
 		startY = y;
-		
-		if(color == 1)
-		{
-			
-		}
+		this.color = color;
 	}
 	
 	
@@ -67,10 +65,10 @@ public class Player {
 	 * Moves the player according to the parameters, and executes
 	 * the correct behavior based on the tiles it lands on.
 	 */
-	public void move(Card c, Level l, PowerUp p, int dir) {
+	public Point move(Card c, Level l, PowerUp p, int dir) {
 		//If it on a wall, don't move
 		if (l.tiles[x][y] == '#')
-			return;
+			return new Point(x, y);
 		//sets values based on the direction, 1 is up, 2 is down, 3 is right, 4 is left
 		int dx = 0;
 		int dy = 0;
@@ -92,14 +90,20 @@ public class Player {
 		
 		//jumps
 		if (jumpDist != 0) {
+			if (x+(dx*jumpDist) < 0 || x+(dx*jumpDist) > 19 || y+(dy*jumpDist) < 0 || y+(dy*jumpDist) > 19) {
+				//reset the level
+				this.reset();
+				return null;
+			}
 			char here = l.tiles[x+(dx*jumpDist)][y+(dy*jumpDist)];
 			//Moves player to new location
 			x = x+(dx*jumpDist);
 			y = y+(dy*jumpDist);
 			//Water tile or wall tile
-			if (here == '~') {
+			if (here == '~' || here == '\u0000') {
 				//reset the level
 				this.reset();
+				return null;
 			}
 			//Ice tile
 			if (here == '-') 
@@ -113,7 +117,7 @@ public class Player {
 				dx = 0;
 			}
 			//Down tile
-			if (here == ',') {
+			if (here == 'v') {
 				dy = 1;
 				dx = 0;
 			}
@@ -136,9 +140,10 @@ public class Player {
 			y = y+dy;
 			char h = l.tiles[x][y];
 			//Water tile
-			if (h == '~') {
+			if (h == '~' || h == '\u0000') {
 				//Resets the level
 				this.reset();
+				return null;
 			}
 			//Ice tile
 			if (h == '-')
@@ -158,7 +163,7 @@ public class Player {
 				dx = 0;
 			}
 			//Down tile
-			if (h == ',') {
+			if (h == 'v') {
 				dy = 1;
 				dx = 0;
 			}
@@ -179,8 +184,14 @@ public class Player {
 		//Checks if you end up on a flag
 		if (l.tiles[x][y] == 'X')
 			; //whatever it does when you win
+		return new Point(x, y);
 		
-		
+	}
+	
+	
+	public void draw(PApplet surface, float x, float y) {
+		surface.ellipse(x, y, 100, 100);
+//		surface.image(createImage("ballWHITE.png"), x, y);
 	}
 	
 	/*
