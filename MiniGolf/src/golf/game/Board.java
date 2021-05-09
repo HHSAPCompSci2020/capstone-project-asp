@@ -16,7 +16,7 @@ public class Board extends Screen{
 	private DrawingSurface surface;
 	private Rectangle back;
 	private ArrayList<Rectangle> cardMenu;
-	
+	private Player p;
 	/*
 	 * Creates a new Board Screen
 	 * @param a drawing surface on which to draw on
@@ -33,7 +33,7 @@ public class Board extends Screen{
         surface.pushStyle();
 
         surface.background(255,255,255);
-
+        
         surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
         surface.fill(0);
         String str = "back";
