@@ -1,6 +1,7 @@
 package golf.game;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.logging.Level;
 /**
  * 
@@ -14,6 +15,7 @@ public class Board extends Screen{
 	private boolean isMoving;
 	private DrawingSurface surface;
 	private Rectangle back;
+	private ArrayList<Rectangle> cardMenu;
 	
 	/*
 	 * Creates a new Board Screen

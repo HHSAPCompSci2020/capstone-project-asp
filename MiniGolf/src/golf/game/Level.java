@@ -10,12 +10,54 @@ import java.util.Scanner;
  *
  */
 public class Level {
-
-	public char[][] tiles;
-	public ArrayList<PowerUp> p;
-	public ArrayList<Card> c;
 	
-	public Level() {
+	public char[][] tiles = new  char[20][20];
+	public ArrayList<PowerUp> p = new ArrayList<PowerUp>();
+	public ArrayList<Card> c = new ArrayList<Card>();
+	public ArrayList<PowerUp> pclone = new ArrayList<PowerUp>();
+	public ArrayList<Card> cclone = new ArrayList<Card>();
+	
+	public Level(String grid, String card, String powerup) {
+		readData(grid, tiles);
+		readData(card, c);
+		readData(powerup, p,true);
+		
+		for(int i =0; i<c.size();i++) {
+			
+			cclone.add(c.get(i));
+			
+		}
+		for(int i =0; i<p.size();i++) {
+			
+			pclone.add(p.get(i));
+			
+		}
+		
+		
+	}
+	
+	public void reset() {
+		
+		for(int i =0; i<c.size();i++) {
+			
+			c.remove(i);
+			
+		}
+		for(int i =0; i<p.size();i++) {
+			
+			p.remove(i);
+			
+		}
+		for(int i =0; i<cclone.size();i++) {
+			
+			c.add(cclone.get(i));
+			
+		}
+		for(int i =0; i<pclone.size();i++) {
+			
+			p.add(pclone.get(i));
+			
+		}
 		
 	}
 	/**
