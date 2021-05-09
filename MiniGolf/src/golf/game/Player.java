@@ -1,5 +1,8 @@
 package golf.game;
 import java.awt.Color;
+
+import processing.core.PApplet;
+import processing.core.PConstants;
 /**
  * 
  * @author Savio
@@ -7,8 +10,10 @@ import java.awt.Color;
  */
 public class Player {
 
-	private float x;
-	private float y;
+	private int x;
+	private int y;
+	private int startX;
+	private int startY;
 	private int color;
 	
 	/*
@@ -16,9 +21,11 @@ public class Player {
 	 *  @param x-location for the player
 	 *  @param y-location for the player
 	 */
-	public Player(float x, float y, int color) {
+	public Player(int x, int y, int color) {
 		this.x = x;
 		this.y = y;
+		startX = x;
+		startY = y;
 		
 		if(color == 1)
 		{
@@ -44,14 +51,14 @@ public class Player {
 	/*
 	 *@param x-value of the player
 	 */
-	public void setX(float x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 	
 	/*
 	 * @param y-value of the player
 	 */
-	public void setY(float y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 	
@@ -61,6 +68,9 @@ public class Player {
 	 * the correct behavior based on the tiles it lands on.
 	 */
 	public void move(Card c, Level l, PowerUp p, int dir) {
+		//If it on a wall, don't move
+		if (l.tiles[x][y] == '#')
+			return;
 		//sets values based on the direction, 1 is up, 2 is down, 3 is right, 4 is left
 		int dx = 0;
 		int dy = 0;
@@ -76,39 +86,110 @@ public class Player {
 		//applies powerup if applicable
 		if(p != null)
 			p.affect(c);
-
+		
+		int moveDist = c.getMagnitude();
+		int jumpDist = c.getJMagnitude();
+		
 		//jumps
-		if (c.getJMagnitude() != 0) {
-			char here = l.tiles[(int) (x+dx)][(int) (y+dy)];
-			
-			
+		if (jumpDist != 0) {
+			char here = l.tiles[x+(dx*jumpDist)][y+(dy*jumpDist)];
+			//Moves player to new location
+			x = x+(dx*jumpDist);
+			y = y+(dy*jumpDist);
+			//Water tile or wall tile
+			if (here == '~') {
+				//reset the level
+				this.reset();
+			}
+			//Ice tile
+			if (here == '-') 
+				moveDist++;
+			//Wall or sand pit
+			if (here == '#' || here == '*')
+				moveDist = 0;
+			//Up tile
+			if (here == '^') {
+				dy = -1;
+				dx = 0;
+			}
+			//Down tile
+			if (here == ',') {
+				dy = 1;
+				dx = 0;
+			}
+			//Right tile
+			if (here == '>') {
+				dy = 0;
+				dx = 1;
+			}
+			//Left tile
+			if (here == '<') {
+				dy = 0;
+				dx = -1;
+			}
+
 		}
 		
 		//move
-		for(int i = 0; i < c.getMagnitude(); i++) {
+		for(int i = 0; i < moveDist; i++) {
+			x = x+dx;
+			y = y+dy;
+			char h = l.tiles[x][y];
+			//Water tile
+			if (h == '~') {
+				//Resets the level
+				this.reset();
+			}
+			//Ice tile
+			if (h == '-')
+				moveDist++;
+			//Sand pit
+			if (h == '*')
+				break;
+			//Wall
+			if (h == '#') {
+				dx *= -1;
+				dy *= -1;
+				moveDist++;
+			}
+			//Up tile
+			if (h == '^') {
+				dy = -1;
+				dx = 0;
+			}
+			//Down tile
+			if (h == ',') {
+				dy = 1;
+				dx = 0;
+			}
+			//Right tile
+			if (h == '>') {
+				dy = 0;
+				dx = 1;
+			}
+			//Left tile
+			if (h == '<') {
+				dy = 0;
+				dx = -1;
+			}
+			
 			
 		}
 		
+		//Checks if you end up on a flag
+		if (l.tiles[x][y] == 'X')
+			; //whatever it does when you win
+		
+		
 	}
-//	public move(Card c, level l, PowerUp p , int dir){
-//		if(p != null){
-//		p.affect(c);
-//		}
-//		//power ups
-//
-//		//jump
-//		for(i = 0; i< jmomentum; i++){
-//		//move in the specified direction
-//		//check current tile
-//		//change behavior accordingly
-//		//ex. If current tile is a wall, don’t do anything
-//		}
-//		//move
-//		for(i = 0; i<momentum; i++){
-//		//move in the specified direction
-//		//check current tile
-//		//change behavior accordingly
-//		//ex. If current tile is a wall, change direction
-//		}
+	
+	/*
+	 * Resets the player to the starting position
+	 */
+	public void reset() {
+		x = startX;
+		y = startY;
+	}
+	
 
 }
