@@ -1,8 +1,10 @@
 package golf.game;
 import java.awt.Point;
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.logging.Level;
+
+
 /**
  * 
  * @author Pranav
@@ -21,10 +23,15 @@ public class Board extends Screen{
 	 * Creates a new Board Screen
 	 * @param a drawing surface on which to draw on
 	 */
-	public Board(DrawingSurface drawingSurface) {
+	public Board(DrawingSurface s) {
+		super(800,800);
+		
+	}
+	public Board(DrawingSurface drawingSurface, Level l) {
 		super(800, 800);
 		surface = drawingSurface;
-		
+
+		this.l = l;
 		back = new Rectangle(100, 100, 100, 100);
 	}
 	
@@ -33,13 +40,15 @@ public class Board extends Screen{
         surface.pushStyle();
 
         surface.background(255,255,255);
-        
+        l.drawGrid(this, surface);
+        l.drawCard(this, surface);
         surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
         surface.fill(0);
         String str = "back";
         float w = surface.textWidth(str);
         surface.text(str, back.x+back.width/2-w/2, back.y+back.height/2);
         
+       
         surface.popStyle();
     }
 

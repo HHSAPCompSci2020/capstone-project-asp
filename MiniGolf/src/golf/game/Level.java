@@ -37,6 +37,9 @@ public class Level {
 		
 		
 	}
+	public Level() {
+		
+	}
 	
 	public void reset() {
 		
