@@ -24,7 +24,11 @@ public class Board extends Screen{
 	 * @param a drawing surface on which to draw on
 	 */
 	public Board(DrawingSurface s) {
+		
+		
 		super(800,800);
+		surface = s;
+		
 		
 	}
 	public Board(DrawingSurface drawingSurface, Level l) {
@@ -33,23 +37,26 @@ public class Board extends Screen{
 
 		this.l = l;
 		back = new Rectangle(100, 100, 100, 100);
+		p = l.findPlayer();
 	}
 	
+	
 	public void draw() {
-
+		
         surface.pushStyle();
 
         surface.background(255,255,255);
         l.drawGrid(this, surface);
         l.drawCard(this, surface);
+        p.draw(surface, 100, 100);
         surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
         surface.fill(0);
         String str = "back";
         float w = surface.textWidth(str);
         surface.text(str, back.x+back.width/2-w/2, back.y+back.height/2);
         
+       surface.popStyle();
        
-        surface.popStyle();
     }
 
     public void mousePressed() {

@@ -15,7 +15,7 @@ public class LevelSelect extends Screen {
 	private Rectangle level1;
 	private Rectangle back;
 	private String files[];
-
+	private int thislevel;
 	/*
 	 * Creates a new levelSelect
 	 * 
@@ -60,8 +60,10 @@ public class LevelSelect extends Screen {
 	 */
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
-		if (level1.contains(p))
-			surface.switchScreen(ScreenSwitcher.SCREEN4);
+		if (level1.contains(p)) {
+			thislevel = 1;
+			switchScreen(ScreenSwitcher.SCREEN4);
+		}
 		if (back.contains(p))
 			surface.switchScreen(ScreenSwitcher.SCREEN1);
 	}
@@ -69,6 +71,18 @@ public class LevelSelect extends Screen {
 	@Override
 	public void switchScreen(int i) {
 		// TODO Auto-generated method stub
+		
+		if(i == 3) {
+			Level l = new Level("Levels//Level"+thislevel+"//Level"+thislevel+"board.txt","Levels//Level"+thislevel+"//Level"+thislevel+"cards.txt","Levels//Level"+thislevel+"//Level"+thislevel+"powerups.txt");
+			Board b = new Board(surface, l);
+			surface.screens.remove(3);
+			surface.screens.add(3, b);
+			surface.activeScreen = surface.screens.get(i);
+			
+		}
+		else {
+		surface.activeScreen = surface.screens.get(i);
+		}
 
 	}
 

@@ -268,7 +268,7 @@ public class Level {
 					p.fill(173,255,47);
 					
 					
-					p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i, width/22, (3*height/4  - height/22)/20);
+					p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)*i+starty, width/22, (3*height/4  - height/22)/20);
 					p.text(tiles[i][t], (width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i);
 					
 				}
@@ -278,7 +278,7 @@ public class Level {
 					
 					p.fill(173,255,47);
 					
-					p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i, width/22, (3*height/4  - height/22)/20);
+					p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)*i+starty, width/22, (3*height/4  - height/22)/20);
 					p.text(tiles[i][t], (width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i);
 					
 				}
@@ -287,7 +287,7 @@ public class Level {
 					l=true;
 					
 					p.fill(173,255,47);
-					p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i, width/22, (3*height/4  - height/22)/20);
+					p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)*i+starty, width/22, (3*height/4  - height/22)/20);
 					p.text(tiles[i][t], (width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i);
 					
 				}
@@ -296,8 +296,8 @@ public class Level {
 					l=true;
 					
 					p.fill(173,255,47);
-					p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i, width/22, (3*height/4  - height/22)/20);
-					p.text(tiles[i][t], (width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i);
+					p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)*i+starty, width/22, (3*height/4  - height/22)/20);
+					p.text(tiles[i][t], (width/22)+t*startx, ((3*height/4  - height/22)/20)*i+starty);
 					
 				}
 				//water
@@ -315,15 +315,33 @@ public class Level {
 				if(tiles[i][t] == '\u0000') {
 					p.fill(0,0,0);
 				}
+				if(tiles[i][t] == '.') {
+					p.fill(0,255,0);
+				}
+				if(tiles[i][t] == 'p') {
+					p.fill(0,255,0);
+				}
 				if(l == false) {
-				p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)+starty*i, width/22, (3*height/4  - height/22)/20);
+				p.rect((width/22)+t*startx, ((3*height/4  - height/22)/20)*i+starty, width/22, (3*height/4  - height/22)/20);
 				
 				}
+				
 				
 			}
 		}
 		
 		
 		
+	}
+	
+	public Player findPlayer() {
+		for(int i = 0; i<tiles.length;i++) {
+			for(int p=0; p<tiles[0].length; p++) {
+				if(tiles[i][p] == 'p') {
+					return new Player(i,p,0);
+				}
+			}
+		}
+		return null;
 	}
 }

@@ -15,8 +15,8 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
     private ArrayList<Integer> keys;
 
-    private Screen activeScreen;
-    private ArrayList<Screen> screens;
+    public Screen activeScreen;
+    public ArrayList<Screen> screens;
 
     /*
      * Creates a new Drawing surface and adds all the screens
@@ -38,7 +38,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
         LevelSelect screen3 = new LevelSelect(this);
         screens.add(screen3);
         
-        Board screen4 = new Board(this);
+        Board screen4 = new Board(this , new Level("Levels//Level2//Level2board.txt","Levels//Level2//Level2cards.txt","Levels//Level2//Level2powerups.txt"));
         screens.add(screen4);
         
         Credits screen5 = new Credits(this);
@@ -140,6 +140,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
     @Override
     public void switchScreen(int i) {
+    
         activeScreen = screens.get(i);
     }
 
