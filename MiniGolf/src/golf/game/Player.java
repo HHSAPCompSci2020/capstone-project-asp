@@ -188,10 +188,19 @@ public class Player {
 		
 	}
 	
-	
-	public void draw(PApplet surface, float x, float y) {
-		surface.ellipse(x, y, 100, 100);
-//		surface.image(createImage("ballWHITE.png"), x, y);
+	/*
+	 * Draws the player on the parameter PApplet
+	 */
+	public void draw(PApplet surface, float width, float height) {
+		float size = 25;
+		float hx = (width/22)*(x+1) + width/44;
+		float hy = (height/22)+(((3*height/4) - (height/22))/20)*y + (((3*height/4) - (height/22))/40);
+		if ((((3*height/4) - (height/22))/20)*y > (width/22)*(x+1)) {
+			size = (width/22)*(x+1);
+		} else {
+			size = (((3*height/4) - (height/22))/20)*y;
+		}
+		surface.ellipse(hx, hy, size, size);
 	}
 	
 	/*

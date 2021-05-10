@@ -50,7 +50,7 @@ public class Board extends Screen{
         surface.background(255,255,255);
         l.drawGrid(this, surface);
         l.drawCard(this, surface);
-        p.draw(surface, 100, 100);
+        p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
         surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
         surface.fill(0);
         String str = "back";
