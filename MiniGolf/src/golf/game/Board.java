@@ -1,7 +1,7 @@
 package golf.game;
 import java.awt.Point;
-
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 
@@ -61,6 +61,7 @@ public class Board extends Screen{
        
     }
 
+
     public void mousePressed() {
         Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
         if (back.contains(p))
@@ -83,6 +84,10 @@ public class Board extends Screen{
 		surface.activeScreen = surface.screens.get(i);
 		}
 		
+		
+	}
+	public Point findCoordinatePoint(int x, int y) {
+		return new Point(this.DRAWING_WIDTH/22 + (this.DRAWING_WIDTH/22)/x,this.DRAWING_HEIGHT/22 + (3*this.DRAWING_HEIGHT/4 - this.DRAWING_HEIGHT/22)/y);	
 	}
 
 	
