@@ -16,6 +16,7 @@ public class LevelSelect extends Screen {
 	private Rectangle back;
 	private String files[];
 	private int thislevel;
+	private boolean cleared[] = new boolean[20];
 	/*
 	 * Creates a new levelSelect
 	 * 
@@ -23,6 +24,8 @@ public class LevelSelect extends Screen {
 	 */
 	public LevelSelect(DrawingSurface drawingSurface) {
 		super(800, 800);
+		
+		cleared[0] = true;
 		surface = drawingSurface;
 
 		level1 = new Rectangle(300, 200, 200, 100);
@@ -74,7 +77,7 @@ public class LevelSelect extends Screen {
 		
 		if(i == 3) {
 			Level l = new Level("Levels//Level"+thislevel+"//Level"+thislevel+"board.txt","Levels//Level"+thislevel+"//Level"+thislevel+"cards.txt","Levels//Level"+thislevel+"//Level"+thislevel+"powerups.txt");
-			Board b = new Board(surface, l);
+			Board b = new Board(surface, thislevel);
 			surface.screens.remove(3);
 			surface.screens.add(3, b);
 			surface.activeScreen = surface.screens.get(i);
