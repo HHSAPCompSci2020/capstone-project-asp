@@ -73,11 +73,11 @@ public class Player {
 		int dy = 0;
 		if (dir == 1)
 			dy = -1;
-		else if (dir == 2)
+		 if (dir == 2)
 			dy = 1;
-		else if (dir == 3)
+		 if (dir == 3)
 			dx = 1;
-		else if (dir == 4)
+		 if (dir == 4)
 			dx = -1;
 
 		// applies powerup if applicable
@@ -137,6 +137,7 @@ public class Player {
 		// move
 		for (int i = 0; i < moveDist; i++) {
 			x = x + dx;
+			System.out.println(x);
 			y = y + dy;
 			char h = l.tiles[x][y];
 			// Water tile
@@ -153,9 +154,11 @@ public class Player {
 				break;
 			// Wall
 			if (h == '#') {
+				x-=dx;
+				y-=dy;
 				dx *= -1;
 				dy *= -1;
-				moveDist++;
+				
 			}
 			// Up tile
 			if (h == '^') {
@@ -179,10 +182,14 @@ public class Player {
 			}
 
 		}
+	
 
 		// Checks if you end up on a flag
-		if (l.tiles[x][y] == 'X')
-			; // whatever it does when you win
+		if (l.tiles[x][y] == 'X') {
+			
+			
+		}
+			 // whatever it does when you win
 		return new Point(x, y);
 
 	}

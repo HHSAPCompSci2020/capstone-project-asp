@@ -1,5 +1,6 @@
 package golf.game;
 
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -237,7 +238,8 @@ public class Level {
 
 		for (int i = 0; i < c.size(); i++) {
 			p.text(c.get(i).getMagnitude(), change * i + startx, starty);
-			p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10);
+			p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10); 
+			b.cardMenu.add(new Rectangle((int)(change * i + startx), (int)(starty),100,100));
 		}
 
 	}
