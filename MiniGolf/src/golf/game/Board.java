@@ -46,6 +46,8 @@ public class Board extends Screen{
 		back = new Rectangle(100, 100, 100, 100);
 		p = l.findPlayer();
 		
+		System.out.println(""+l.c.get(0).getMagnitude());
+		p.move(l.c.get(0), l, null, 1);
 	
 	}
 	
