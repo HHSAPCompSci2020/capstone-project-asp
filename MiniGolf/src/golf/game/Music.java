@@ -3,28 +3,24 @@ package golf.game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import jay.jaysound.JayLayer;
 import jay.jaysound.JayLayerListener;
 
 public class Music extends JPanel implements ActionListener, JayLayerListener {
-	private JComboBox<String> effects;
 	private JayLayer sound;
 
 	public Music() {
-		super();
+		// super();
 
-		// String[] soundEffects = new
-		// String[]{"title1.mp3","title2.mp3","title3.mp3","title4.mp3","title5.mp3"};
-		String[] songs = new String[] { "Assets/QuirkyWorky.mp3" };
+		String[] soundEffects = new String[] { "QuirkyWorky.mp3" };
+		String[] songs = new String[] { "QuirkyWorky.mp3" };
 
-		// effects = new JComboBox<String>(soundEffects);
-		sound = new JayLayer("audio/", "audio/", false);
+		sound = new JayLayer("Assets/", "Assets/", false);
 		sound.addPlayList();
 		sound.addSongs(0, songs);
-		// sound.addSoundEffects(soundEffects);
+		sound.addSoundEffects(soundEffects);
 		sound.changePlayList(0);
 		sound.addJayLayerListener(this);
 
@@ -35,7 +31,6 @@ public class Music extends JPanel implements ActionListener, JayLayerListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		sound.nextSong();
-
 	}
 
 	@Override
@@ -59,4 +54,5 @@ public class Music extends JPanel implements ActionListener, JayLayerListener {
 	public void musicStopped() {
 
 	}
+
 }
