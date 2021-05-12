@@ -239,7 +239,7 @@ public class Level {
 		for (int i = 0; i < c.size(); i++) {
 			p.text(c.get(i).getMagnitude(), change * i + startx, starty);
 			p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10); 
-			b.cardMenu.add(new Rectangle2D.Float(100,100 ,change * i + startx,(starty)));
+			
 		}
 		}
 
