@@ -44,6 +44,8 @@ public class Board extends Screen {
 		this.l = l;
 		back = new Rectangle(100, 100, 100, 100);
 		p = l.findPlayer();
+		Music m = new Music();
+		m.actionPerformed(null);
 	}
 
 	public void draw() {
@@ -88,8 +90,6 @@ public class Board extends Screen {
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
 		if (back.contains(p)) {
-			Music m = new Music();
-			m.actionPerformed(null);
 			this.switchScreen(3);
 		}
 
