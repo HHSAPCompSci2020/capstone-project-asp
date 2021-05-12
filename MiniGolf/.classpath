@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="Sound"/>
 	<classpathentry kind="lib" path="processing_core.jar" sourcepath="processing_core.jar"/>
+	<classpathentry kind="lib" path="JayLayer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
