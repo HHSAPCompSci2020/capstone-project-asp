@@ -233,6 +233,8 @@ public class Level {
 
 		float change = (b.DRAWING_WIDTH - b.DRAWING_WIDTH / 22) / c.size();
 
+		p.fill(0);
+
 		for (int i = 0; i < c.size(); i++) {
 			p.text(c.get(i).getMagnitude(), change * i + startx, starty);
 			p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10);
