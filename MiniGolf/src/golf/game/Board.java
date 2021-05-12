@@ -1,9 +1,12 @@
 package golf.game;
 
 import java.awt.Point;
+import java.awt.geom.*;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import processing.core.PApplet;
 
 /**
  * 
@@ -17,7 +20,7 @@ public class Board extends Screen {
 	private boolean isMoving;
 	private DrawingSurface surface;
 	private Rectangle back;
-	public ArrayList<Rectangle> cardMenu = new ArrayList<Rectangle>();
+	public ArrayList<Rectangle2D.Float> cardMenu = new ArrayList<Rectangle2D.Float>();
 	private Player p;
 	private int level;
 	private ArrayList<Integer> keys = new ArrayList<Integer>();
@@ -46,6 +49,25 @@ public class Board extends Screen {
 		p = l.findPlayer();
 		Music m = new Music();
 		m.actionPerformed(null);
+		instantiateCards();
+		System.out.println(cardMenu.size());
+		
+		System.out.println(cardMenu.get(0).getCenterX());
+	}
+	public void instantiateCards() {
+
+		float startx = DRAWING_WIDTH / 22;
+		float starty = DRAWING_HEIGHT * 4 / 5;
+
+		float change = (DRAWING_WIDTH - DRAWING_WIDTH / 22) / l.c.size();
+
+
+
+		for (int i = 0; i < l.c.size(); i++) {
+			
+			this.cardMenu.add(new Rectangle2D.Float(100,100 ,change * i + startx,(starty)));
+		}
+
 	}
 
 	public void draw() {
@@ -63,23 +85,30 @@ public class Board extends Screen {
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
 
 		if (cardSelected != null) {
-			if (isPressed(KeyEvent.VK_LEFT)) {
+		
+			if (surface.isPressed(KeyEvent.VK_LEFT)) {
 				p.move(cardSelected, l, null, 4);
+				
 				l.c.remove(cardSelected);
+				cardSelected = null;
 			}
-			if (isPressed(KeyEvent.VK_RIGHT)) {
+			if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 				p.move(cardSelected, l, null, 3);
+				System.out.println("this");
 				l.c.remove(cardSelected);
+				cardSelected = null;
 			}
 
-			if (isPressed(KeyEvent.VK_UP)) {
+			if (surface.isPressed(KeyEvent.VK_UP)) {
 				p.move(cardSelected, l, null, 1);
 				l.c.remove(cardSelected);
+				cardSelected = null;
 
 			}
-			if (isPressed(KeyEvent.VK_DOWN)) {
+			if (surface.isPressed(KeyEvent.VK_DOWN)) {
 				p.move(cardSelected, l, null, 2);
 				l.c.remove(cardSelected);
+				cardSelected = null;
 			}
 
 		}
@@ -94,8 +123,14 @@ public class Board extends Screen {
 		}
 
 		for (int i = 0; i < l.c.size(); i++) {
+			
 			if (cardMenu.get(i).contains(p)) {
 				cardSelected = l.c.get(i);
+				System.out.println("hit");
+				if(cardSelected == null) {
+					System.out.println("?");
+				}
+				
 			}
 
 		}
@@ -117,17 +152,6 @@ public class Board extends Screen {
 
 	}
 
-	public void keyPressed() {
-		keys.add(surface.keyCode);
-	}
-
-	public void keyReleased() {
-		while (keys.contains(surface.keyCode))
-			keys.remove(new Integer(surface.keyCode));
-	}
-
-	public boolean isPressed(Integer code) {
-		return keys.contains(code);
-	}
+	
 
 }

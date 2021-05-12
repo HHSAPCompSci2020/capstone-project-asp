@@ -1,6 +1,6 @@
 package golf.game;
 
-import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -228,7 +228,7 @@ public class Level {
 	}
 
 	public void drawCard(Board b, PApplet p) {
-
+		if(this.c.size()>0) {
 		float startx = b.DRAWING_WIDTH / 22;
 		float starty = b.DRAWING_HEIGHT * 4 / 5;
 
@@ -239,7 +239,8 @@ public class Level {
 		for (int i = 0; i < c.size(); i++) {
 			p.text(c.get(i).getMagnitude(), change * i + startx, starty);
 			p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10); 
-			b.cardMenu.add(new Rectangle((int)(change * i + startx), (int)(starty),100,100));
+			b.cardMenu.add(new Rectangle2D.Float(100,100 ,change * i + startx,(starty)));
+		}
 		}
 
 	}
