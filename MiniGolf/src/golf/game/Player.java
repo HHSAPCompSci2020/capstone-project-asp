@@ -66,7 +66,7 @@ public class Player {
 	 */
 	public Point move(Card c, Level l, PowerUp p, int dir) {
 		// If it on a wall, don't move
-		if (l.tiles[x][y] == '#')
+		if (l.tiles[y][x] == '#')
 			return new Point(x, y);
 		// sets values based on the direction, 1 is up, 2 is down, 3 is right, 4 is left
 		int dx = 0;
@@ -95,7 +95,7 @@ public class Player {
 				this.reset();
 				return null;
 			}
-			char here = l.tiles[x + (dx * jumpDist)][y + (dy * jumpDist)];
+			char here = l.tiles[y + (dy * jumpDist)][x + (dx * jumpDist)];
 			// Moves player to new location
 			x = x + (dx * jumpDist);
 			y = y + (dy * jumpDist);
@@ -137,9 +137,8 @@ public class Player {
 		// move
 		for (int i = 0; i < moveDist; i++) {
 			x = x + dx;
-			System.out.println(x);
 			y = y + dy;
-			char h = l.tiles[x][y];
+			char h = l.tiles[y][x];
 			// Water tile
 			if (h == '~' || h == '\u0000') {
 				// Resets the level
@@ -185,7 +184,7 @@ public class Player {
 	
 
 		// Checks if you end up on a flag
-		if (l.tiles[x][y] == 'X') {
+		if (l.tiles[y][x] == 'X') {
 			
 			
 		}
