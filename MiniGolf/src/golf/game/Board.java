@@ -65,7 +65,7 @@ public class Board extends Screen {
 
 		for (int i = 0; i < l.c.size(); i++) {
 			
-			this.cardMenu.add(new Rectangle2D.Float(100,100 ,change * i + startx,(starty)));
+			this.cardMenu.add(new Rectangle2D.Float(change * i + startx,starty ,100,100));
 		}
 
 	}
@@ -83,7 +83,11 @@ public class Board extends Screen {
 		String str = "back";
 		float w = surface.textWidth(str);
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
-
+		
+		surface.fill(0,255,0);
+			
+			
+		
 		if (cardSelected != null) {
 		
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
