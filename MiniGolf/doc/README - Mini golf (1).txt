@@ -100,7 +100,7 @@ Credits:
 * List the group members and describe how each member contributed to the completion of the final program. This could be classes written, art assets created, leadership/organizational skills exercises, or other tasks. Initially, this is how you plan on splitting the work.
 * Give credit to all outside resources used. This includes downloaded images or sounds, external java libraries, parent/tutor/student coding help, etc.]
 
-
+Music from Phneas and Ferb
 Inspired by Golf Peaks
 Uses the Processing Library and JSound Library
 Uses code from parts of the Processing screen switching demo(Shelby) as well as code from Recursion 2D Arrays(previous lab)
@@ -135,67 +135,3 @@ Pranav: Board, Level, Credits,  PowerUp, LevelMaker(stretch)?
 Savio: Player, Card, Main, Music, LevelMaker(stretch[a])? 
 
 
-//ACTUAL CODE + PSEUDOCODE BEFORE CODING
-public move(Card c, level l, PowerUp p , int dir){
-if(p != null){
-p.affect(c);
-}
-//power ups
-
-
-//jump
-for(i = 0; i< jmomentum; i++){
-//move in the specified direction
-//check current tile
-//change behavior accordingly
-//ex. If current tile is a wall, don’t do anything
-}
-//move
-for(i = 0; i<momentum; i++){
-//move in the specified direction
-//check current tile
-//change behavior accordingly
-//ex. If current tile is a wall, change direction
-}
-
-
-
-
-// IN LEVELSELECT
-Rectangle level1;
-Int levelSelected
-public void mousePressed() {
-                Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
-                if (button.contains(p))
-                        //Essentially, takes the number of the level
-                        levelSelected = string parsed;
-                        screenSwitch(7);
-        }
-
-
-//IN DRAWINGSURFACE
-public void switchScreen(int i) {
-        if(int i ==7){
-        Level l = new Level(“level\\level””+levelSelected+”\\level”+levelSelected+”board” );
-        
-        Board  game= new Board(l);
-screens.remove(whatever is board rn)
-        screens.add(game);
-
-
-
-
-activeScreen = screens.get(i);
-}
-                activeScreen = screens.get(i);
-        }
-
-
-
-
-//LEVEL PACKAGE
-        //LEVEL 1
-                //LEVEL1 BOARD
-                //LEVEL 1 CARDS
-                //LEVEL 1 POWERUPS
-[a]Positive: I really like how you guys plan things out based on difficulties
