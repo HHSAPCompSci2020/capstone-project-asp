@@ -25,7 +25,7 @@ public class Board extends Screen {
 	private Player p;
 	private int level;
 
-	/*
+	/**
 	 * Creates a new Board Screen
 	 * 
 	 * @param a drawing surface on which to draw on
@@ -149,6 +149,9 @@ public class Board extends Screen {
 	}
 
 	@Override
+	/**
+	 * goes to the next level 
+	 */
 	public void switchScreen(int i) {
 		if (i == 3) {
 

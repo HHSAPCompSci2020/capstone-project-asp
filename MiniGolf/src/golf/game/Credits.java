@@ -12,7 +12,7 @@ public class Credits extends Screen{
 	private DrawingSurface surface;
 	private Rectangle back;
 
-	/*
+	/**
 	 * creates new credits 
 	 * @param the surface to draw the credits on
 	 */

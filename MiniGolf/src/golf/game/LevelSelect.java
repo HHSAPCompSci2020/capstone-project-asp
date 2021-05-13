@@ -69,7 +69,9 @@ public class LevelSelect extends Screen {
 		if (back.contains(p))
 			surface.switchScreen(ScreenSwitcher.SCREEN1);
 	}
-
+/**
+ * Loads up a new level depending on what has been selected
+ */
 	@Override
 	public void switchScreen(int i) {
 		// TODO Auto-generated method stub

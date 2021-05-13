@@ -14,6 +14,11 @@ import processing.core.PApplet;
  * @author Pranav
  *
  */
+/**
+ * 
+ * 
+ *
+ */
 public class Level {
 
 	public char[][] tiles = new char[20][20];
@@ -226,6 +231,12 @@ public class Level {
 		}
 
 	}
+	/**Draws the cards (in the form of numbers for now)
+	 * 
+	 * 
+	 * @param board to draw on
+	 * @param surface to draw stuff
+	 */
 
 	public void drawCard(Board b, PApplet p) {
 		if(this.c.size()>0) {
@@ -244,6 +255,11 @@ public class Level {
 		}
 
 	}
+	/**Draws the Grid in tiles
+	 * 
+	 * @param b board to draw on
+	 * @param p surface to draw on
+	 */
 
 	public void drawGrid(Board b, PApplet p) {
 
