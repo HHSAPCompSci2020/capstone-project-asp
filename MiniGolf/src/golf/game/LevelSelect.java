@@ -14,7 +14,6 @@ public class LevelSelect extends Screen {
 	private DrawingSurface surface;
 	private Rectangle level1;
 	private Rectangle back;
-	private String files[];
 	private int thislevel;
 	private boolean cleared[] = new boolean[20];
 	/*
@@ -29,7 +28,7 @@ public class LevelSelect extends Screen {
 		surface = drawingSurface;
 
 		level1 = new Rectangle(300, 200, 200, 100);
-		back = new Rectangle(100, 100, 100, 100);
+		back = new Rectangle(0, 0, 100, 100);
 		level1 = new Rectangle(400, 200, 200, 100);
 	}
 
@@ -70,7 +69,9 @@ public class LevelSelect extends Screen {
 		if (back.contains(p))
 			surface.switchScreen(ScreenSwitcher.SCREEN1);
 	}
-
+/**
+ * Loads up a new level depending on what has been selected
+ */
 	@Override
 	public void switchScreen(int i) {
 		// TODO Auto-generated method stub

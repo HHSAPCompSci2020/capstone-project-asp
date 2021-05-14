@@ -21,7 +21,7 @@ public class Settings extends Screen {
 		super(800, 800);
 		surface = drawingSurface;
 
-		back = new Rectangle(100, 100, 100, 100);
+		back = new Rectangle(0, 0, 100, 100);
 		credits = new Rectangle(300, 200, 200, 100);
 	}
 
@@ -36,7 +36,7 @@ public class Settings extends Screen {
 
 		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
 		surface.fill(0);
-		String str = "back";
+		String str = "Back";
 		float w = surface.textWidth(str);
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
 

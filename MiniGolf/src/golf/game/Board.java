@@ -20,12 +20,12 @@ public class Board extends Screen {
 	private boolean isMoving;
 	private DrawingSurface surface;
 	private Rectangle back;
+	private Rectangle back1;
 	public ArrayList<Rectangle2D.Float> cardMenu = new ArrayList<Rectangle2D.Float>();
 	private Player p;
 	private int level;
-	private ArrayList<Integer> keys = new ArrayList<Integer>();
 
-	/*
+	/**
 	 * Creates a new Board Screen
 	 * 
 	 * @param a drawing surface on which to draw on
@@ -45,7 +45,8 @@ public class Board extends Screen {
 		surface = drawingSurface;
 		this.level = thislevel;
 		this.l = l;
-		back = new Rectangle(100, 100, 100, 100);
+		back = new Rectangle(700, 700, 100, 100);
+		back1 = new Rectangle (0, 700, 100, 100);
 		p = l.findPlayer();
 		Music m = new Music();
 		m.actionPerformed(null);
@@ -54,7 +55,8 @@ public class Board extends Screen {
 		
 		System.out.println(cardMenu.get(0).getCenterX());
 	}
-	public void instantiateCards() {
+	
+	private void instantiateCards() {
 
 		float startx = DRAWING_WIDTH / 22;
 		float starty = DRAWING_HEIGHT * 4 / 5;
@@ -65,7 +67,7 @@ public class Board extends Screen {
 
 		for (int i = 0; i < l.c.size(); i++) {
 			
-			this.cardMenu.add(new Rectangle2D.Float(100,100 ,change * i + startx,(starty)));
+			this.cardMenu.add(new Rectangle2D.Float(change * i + startx,starty ,100,100));
 		}
 
 	}
@@ -79,11 +81,18 @@ public class Board extends Screen {
 		l.drawCard(this, surface);
 		p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
 		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
+		surface.rect(back1.x, back1.y, back1.width, back1.height);
+		
 		surface.fill(0);
-		String str = "back";
+		String str = "Next";
 		float w = surface.textWidth(str);
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
-
+		surface.text("Back", back1.x + back1.width / 2 - w / 2, back1.y + back1.height / 2);
+		
+		surface.fill(0,255,0);
+			
+			
+		
 		if (cardSelected != null) {
 		
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
@@ -121,6 +130,9 @@ public class Board extends Screen {
 		if (back.contains(p)) {
 			this.switchScreen(3);
 		}
+		if (back1.contains(p)) {
+			this.switchScreen(2);
+		}
 
 		for (int i = 0; i < l.c.size(); i++) {
 			
@@ -137,6 +149,9 @@ public class Board extends Screen {
 	}
 
 	@Override
+	/**
+	 * goes to the next level 
+	 */
 	public void switchScreen(int i) {
 		if (i == 3) {
 

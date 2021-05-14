@@ -32,37 +32,41 @@ public class Player {
 		this.color = color;
 	}
 
-	/*
+	/**
 	 * @return x-value of the player
 	 */
 	public float getX() {
 		return x;
 	}
 
-	/*
+	/**
 	 * @return y-value of the player
 	 */
 	public float getY() {
 		return y;
 	}
 
-	/*
+	/**
 	 * @param x-value of the player
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
-	/*
+	/**
 	 * @param y-value of the player
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 
-	/*
+	/***
 	 * Moves the player according to the parameters, and executes the correct
 	 * behavior based on the tiles it lands on.
+	 * @param c the card that is currently held
+	 * @param l the current level that the player is in
+	 * @param p Powerups that may affect the movement
+	 * @param dir an integer value representing which direction the player moved in
 	 */
 	public Point move(Card c, Level l, PowerUp p, int dir) {
 		// If it on a wall, don't move
