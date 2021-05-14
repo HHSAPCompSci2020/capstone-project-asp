@@ -1,6 +1,5 @@
 package golf.game;
 
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -231,31 +230,35 @@ public class Level {
 		}
 
 	}
-	/**Draws the cards (in the form of numbers for now)
+
+	/**
+	 * Draws the cards (in the form of numbers for now)
 	 * 
 	 * 
-	 * @param board to draw on
+	 * @param board   to draw on
 	 * @param surface to draw stuff
 	 */
 
 	public void drawCard(Board b, PApplet p) {
-		if(this.c.size()>0) {
-		float startx = b.DRAWING_WIDTH / 22;
-		float starty = b.DRAWING_HEIGHT * 4 / 5;
+		if (this.c.size() > 0) {
+			float startx = b.DRAWING_WIDTH / 22;
+			float starty = b.DRAWING_HEIGHT * 4 / 5;
 
-		float change = (b.DRAWING_WIDTH - b.DRAWING_WIDTH / 22) / c.size();
+			float change = (b.DRAWING_WIDTH - b.DRAWING_WIDTH / 22) / c.size();
+			p.fill(0);
+			for (int i = 0; i < c.size(); i++) {
+				p.text(c.get(i).getMagnitude(), change * i + startx, starty);
+				p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10);
+				p.noFill();
+				p.rect(change * i + startx - 10, starty - 20, 100, 500);
 
-		p.fill(0);
-
-		for (int i = 0; i < c.size(); i++) {
-			p.text(c.get(i).getMagnitude(), change * i + startx, starty);
-			p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10); 
-			
-		}
+			}
 		}
 
 	}
-	/**Draws the Grid in tiles
+
+	/**
+	 * Draws the Grid in tiles
 	 * 
 	 * @param b board to draw on
 	 * @param p surface to draw on

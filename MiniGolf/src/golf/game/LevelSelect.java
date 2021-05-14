@@ -12,10 +12,11 @@ import java.awt.Rectangle;
 public class LevelSelect extends Screen {
 
 	private DrawingSurface surface;
-	private Rectangle level1;
+	private Rectangle level1, level2;
 	private Rectangle back;
 	private int thislevel;
 	private boolean cleared[] = new boolean[20];
+
 	/*
 	 * Creates a new levelSelect
 	 * 
@@ -23,13 +24,13 @@ public class LevelSelect extends Screen {
 	 */
 	public LevelSelect(DrawingSurface drawingSurface) {
 		super(800, 800);
-		
+
 		cleared[0] = true;
 		surface = drawingSurface;
 
-		level1 = new Rectangle(300, 200, 200, 100);
+		level1 = new Rectangle(100, 200, 150, 100);
 		back = new Rectangle(0, 0, 100, 100);
-		level1 = new Rectangle(400, 200, 200, 100);
+		level2 = new Rectangle(250, 200, 150, 100);
 	}
 
 	/*
@@ -47,6 +48,16 @@ public class LevelSelect extends Screen {
 		float w = surface.textWidth(str);
 		surface.text(str, level1.x + level1.width / 2 - w / 2, level1.y + level1.height / 2);
 
+		surface.fill(0);
+		if (cleared[1]) {
+			surface.noFill();
+		}
+		surface.rect(level2.x, level2.y, level2.width, level2.height, 10, 10, 10, 10);
+		surface.fill(0);
+		str = "level 2";
+		w = surface.textWidth(str);
+		surface.text(str, level2.x + level2.width / 2 - w / 2, level2.y + level2.height / 2);
+
 		surface.noFill();
 		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
 		surface.fill(0);
@@ -61,31 +72,38 @@ public class LevelSelect extends Screen {
 	 * switches the screen if the level1 rectangle is clicked on
 	 */
 	public void mousePressed() {
+		Board b = new Board(surface);
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
 		if (level1.contains(p)) {
 			thislevel = 1;
 			switchScreen(ScreenSwitcher.SCREEN4);
 		}
+		if (level2.contains(p) && cleared[1]) {
+			thislevel = 2;
+			switchScreen(ScreenSwitcher.SCREEN4);
+		}
 		if (back.contains(p))
 			surface.switchScreen(ScreenSwitcher.SCREEN1);
 	}
-/**
- * Loads up a new level depending on what has been selected
- */
+
+	/**
+	 * Loads up a new level depending on what has been selected
+	 */
 	@Override
 	public void switchScreen(int i) {
 		// TODO Auto-generated method stub
-		
-		if(i == 3) {
-			Level l = new Level("Levels//Level"+thislevel+"//Level"+thislevel+"board.txt","Levels//Level"+thislevel+"//Level"+thislevel+"cards.txt","Levels//Level"+thislevel+"//Level"+thislevel+"powerups.txt");
+
+		if (i == 3) {
+			Level l = new Level("Levels//Level" + thislevel + "//Level" + thislevel + "board.txt",
+					"Levels//Level" + thislevel + "//Level" + thislevel + "cards.txt",
+					"Levels//Level" + thislevel + "//Level" + thislevel + "powerups.txt");
 			Board b = new Board(surface, thislevel);
 			surface.screens.remove(3);
 			surface.screens.add(3, b);
 			surface.activeScreen = surface.screens.get(i);
-			
-		}
-		else {
-		surface.activeScreen = surface.screens.get(i);
+
+		} else {
+			surface.activeScreen = surface.screens.get(i);
 		}
 
 	}

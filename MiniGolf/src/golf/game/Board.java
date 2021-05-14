@@ -1,12 +1,10 @@
 package golf.game;
 
 import java.awt.Point;
-import java.awt.geom.*;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-
-import processing.core.PApplet;
 
 /**
  * 
@@ -46,16 +44,16 @@ public class Board extends Screen {
 		this.level = thislevel;
 		this.l = l;
 		back = new Rectangle(700, 700, 100, 100);
-		back1 = new Rectangle (0, 700, 100, 100);
+		back1 = new Rectangle(0, 700, 100, 100);
 		p = l.findPlayer();
 		Music m = new Music();
 		m.actionPerformed(null);
 		instantiateCards();
 		System.out.println(cardMenu.size());
-		
+
 		System.out.println(cardMenu.get(0).getCenterX());
 	}
-	
+
 	private void instantiateCards() {
 
 		float startx = DRAWING_WIDTH / 22;
@@ -63,11 +61,9 @@ public class Board extends Screen {
 
 		float change = (DRAWING_WIDTH - DRAWING_WIDTH / 22) / l.c.size();
 
-
-
 		for (int i = 0; i < l.c.size(); i++) {
-			
-			this.cardMenu.add(new Rectangle2D.Float(change * i + startx,starty ,100,100));
+
+			this.cardMenu.add(new Rectangle2D.Float(change * i + startx, starty, 100, 100));
 		}
 
 	}
@@ -77,27 +73,28 @@ public class Board extends Screen {
 		surface.pushStyle();
 
 		surface.background(255, 255, 255);
+		surface.fill(255, 0, 0);
 		l.drawGrid(this, surface);
 		l.drawCard(this, surface);
 		p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
 		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
 		surface.rect(back1.x, back1.y, back1.width, back1.height);
-		
-		surface.fill(0);
+
+		// surface.fill(0);
 		String str = "Next";
 		float w = surface.textWidth(str);
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
-		surface.text("Back", back1.x + back1.width / 2 - w / 2, back1.y + back1.height / 2);
-		
-		surface.fill(0,255,0);
-			
-			
-		
+		str = "Back";
+		w = surface.textWidth(str);
+		surface.text(str, back1.x + back1.width / 2 - w / 2, back1.y + back1.height / 2);
+
+		surface.fill(0, 255, 0);
+
 		if (cardSelected != null) {
-		
+
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
 				p.move(cardSelected, l, null, 4);
-				
+
 				l.c.remove(cardSelected);
 				cardSelected = null;
 			}
@@ -135,14 +132,14 @@ public class Board extends Screen {
 		}
 
 		for (int i = 0; i < l.c.size(); i++) {
-			
+
 			if (cardMenu.get(i).contains(p)) {
 				cardSelected = l.c.get(i);
 				System.out.println("hit");
-				if(cardSelected == null) {
+				if (cardSelected == null) {
 					System.out.println("?");
 				}
-				
+
 			}
 
 		}
@@ -150,7 +147,7 @@ public class Board extends Screen {
 
 	@Override
 	/**
-	 * goes to the next level 
+	 * goes to the next level
 	 */
 	public void switchScreen(int i) {
 		if (i == 3) {
@@ -166,7 +163,5 @@ public class Board extends Screen {
 		}
 
 	}
-
-	
 
 }
