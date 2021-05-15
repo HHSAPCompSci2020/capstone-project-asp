@@ -43,26 +43,18 @@ public class LevelSelect extends Screen {
 		String str;
 		float w;
 		for (int i = 0; i <= 10; i++) {
-			surface.noFill();
+			surface.fill(0);
 			levelButton.add(new Rectangle(100 + 150 * i, 200, 150, 100));
+			if (cleared[i]) {
+				surface.noFill();
+			}
 			surface.rect(levelButton.get(i).x, levelButton.get(i).y, levelButton.get(i).width,
 					levelButton.get(i).height, 10, 10, 10, 10);
-			if (!cleared[i]) {
-				surface.fill(0);
-			}
+			surface.fill(0);
 			str = "level " + (i + 1);
 			surface.text(str, levelButton.get(i).x + levelButton.get(i).width / 2 - surface.textWidth(str) / 2,
 					levelButton.get(i).y + levelButton.get(i).height / 2);
 		}
-//		String str = "level 1";
-//		float w = surface.textWidth(str);
-//		surface.text(str, level1.x + level1.width / 2 - w / 2, level1.y + level1.height / 2);
-
-//		surface.rect(level2.x, level2.y, level2.width, level2.height, 10, 10, 10, 10);
-//		surface.fill(0);
-//		str = "level 2";
-//		w = surface.textWidth(str);
-//		surface.text(str, level2.x + level2.width / 2 - w / 2, level2.y + level2.height / 2);
 
 		surface.noFill();
 		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
@@ -80,14 +72,20 @@ public class LevelSelect extends Screen {
 	public void mousePressed() {
 		Board b = new Board(surface);
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
-		if (levelButton.get(0).contains(p)) {
-			thislevel = 1;
-			switchScreen(ScreenSwitcher.SCREEN4);
+		for (int i = 0; i <= 10; i++) {
+			if (levelButton.get(i).contains(p)) {
+				thislevel = i + 1;
+				switchScreen(ScreenSwitcher.SCREEN4);
+			}
 		}
-		if (levelButton.get(1).contains(p) && cleared[1]) {
-			thislevel = 2;
-			switchScreen(ScreenSwitcher.SCREEN4);
-		}
+//		if (levelButton.get(0).contains(p)) {
+//			thislevel = 1;
+//			switchScreen(ScreenSwitcher.SCREEN4);
+//		}
+//		if (levelButton.get(1).contains(p) && cleared[1]) {
+//			thislevel = 2;
+//			switchScreen(ScreenSwitcher.SCREEN4);
+//		}
 		if (back.contains(p))
 			surface.switchScreen(ScreenSwitcher.SCREEN1);
 	}
