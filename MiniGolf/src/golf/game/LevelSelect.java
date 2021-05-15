@@ -97,13 +97,8 @@ public class LevelSelect extends Screen {
 	 */
 	@Override
 	public void switchScreen(int i) {
-		// TODO Auto-generated method stub
-
 		if (i == 3) {
-			Level l = new Level("Levels//Level" + thislevel + "//Level" + thislevel + "board.txt",
-					"Levels//Level" + thislevel + "//Level" + thislevel + "cards.txt",
-					"Levels//Level" + thislevel + "//Level" + thislevel + "powerups.txt");
-			Board b = new Board(surface, thislevel);
+			Board b = new Board(surface, thislevel, cleared);
 			surface.screens.remove(3);
 			surface.screens.add(3, b);
 			surface.activeScreen = surface.screens.get(i);

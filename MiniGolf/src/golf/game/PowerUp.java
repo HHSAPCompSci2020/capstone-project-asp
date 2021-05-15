@@ -33,5 +33,13 @@ public class PowerUp {
 		c.setJMagnitude(jumpMagnitude);
 		c.setJump(doesJump);
 	}
+	public int getMagnitude() {
+		return magnitude;
+		
+	}
+	public int getJMagnitude() {
+		return jumpMagnitude;
+		
+	}
 
 }

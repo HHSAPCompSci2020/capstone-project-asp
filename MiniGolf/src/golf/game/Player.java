@@ -1,6 +1,7 @@
 package golf.game;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import processing.core.PApplet;
 
@@ -16,6 +17,8 @@ public class Player {
 	private int startX;
 	private int startY;
 	private int color;
+	private boolean cleared;
+	private ArrayList<Point> next;
 
 	/*
 	 * creates a new player with the given location
@@ -30,6 +33,8 @@ public class Player {
 		startX = x;
 		startY = y;
 		this.color = color;
+		cleared = false;
+		next = new ArrayList<Point>();
 	}
 
 	/**
@@ -73,6 +78,10 @@ public class Player {
 		// If it on a wall, don't move
 		if (l.tiles[y][x] == '#')
 			return new Point(x, y);
+		
+		//Adds the starting location to the arraylist
+		next.add(new Point(x, y));
+		
 		// sets values based on the direction, 1 is up, 2 is down, 3 is right, 4 is left
 		int dx = 0;
 		int dy = 0;
@@ -136,7 +145,7 @@ public class Player {
 				dy = 0;
 				dx = -1;
 			}
-
+			next.add(new Point(x, y));
 		}
 
 		// move
@@ -184,19 +193,18 @@ public class Player {
 				dy = 0;
 				dx = -1;
 			}
-
+			next.add(new Point(x, y));
 		}
 
 		// Checks if you end up on a flag
 		if (l.tiles[y][x] == 'X') {
-
+			cleared = true;
 		}
-		// whatever it does when you win
 		return new Point(x, y);
 
 	}
 
-	/*
+	/**
 	 * Draws the player on the parameter PApplet
 	 */
 	public void draw(PApplet surface, float width, float height) {
@@ -206,6 +214,9 @@ public class Player {
 		float boxHeight = ((3 * height / 4) - (height / 22)) / 20;
 		float boxWidth = width / 22;
 		float size = 25;
+		
+		
+		
 		float hx = (boxWidth) * (x + 1) + boxWidth / 2;
 		float hy = (height / 22) + boxHeight * y + boxHeight / 2;
 		if (boxHeight > boxWidth) {
@@ -219,7 +230,7 @@ public class Player {
 		// surface.image(surface.loadImage("Assets/ballBLACK.png"), x, y);
 	}
 
-	/*
+	/**
 	 * Resets the player to the starting position
 	 */
 	public void reset() {
@@ -227,4 +238,11 @@ public class Player {
 		y = startY;
 	}
 
+	/**
+	 * @return boolean true if level has been cleared, false otherwise
+	 */
+	public boolean isCleared() {
+		return cleared;
+	}
+	
 }
