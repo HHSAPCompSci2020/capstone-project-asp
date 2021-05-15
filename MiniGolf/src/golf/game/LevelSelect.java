@@ -2,6 +2,7 @@ package golf.game;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 /**
  * 
@@ -12,7 +13,7 @@ import java.awt.Rectangle;
 public class LevelSelect extends Screen {
 
 	private DrawingSurface surface;
-	private Rectangle level1, level2;
+	private ArrayList<Rectangle> levelButton = new ArrayList<Rectangle>();
 	private Rectangle back;
 	private int thislevel;
 	private boolean cleared[] = new boolean[20];
@@ -28,9 +29,7 @@ public class LevelSelect extends Screen {
 		cleared[0] = true;
 		surface = drawingSurface;
 
-		level1 = new Rectangle(100, 200, 150, 100);
 		back = new Rectangle(0, 0, 100, 100);
-		level2 = new Rectangle(250, 200, 150, 100);
 	}
 
 	/*
@@ -41,22 +40,29 @@ public class LevelSelect extends Screen {
 		surface.pushStyle();
 
 		surface.background(255, 255, 255);
-
-		surface.rect(level1.x, level1.y, level1.width, level1.height, 10, 10, 10, 10);
-		surface.fill(0);
-		String str = "level 1";
-		float w = surface.textWidth(str);
-		surface.text(str, level1.x + level1.width / 2 - w / 2, level1.y + level1.height / 2);
-
-		surface.fill(0);
-		if (cleared[1]) {
+		String str;
+		float w;
+		for (int i = 0; i <= 10; i++) {
 			surface.noFill();
+			levelButton.add(new Rectangle(100 + 150 * i, 200, 150, 100));
+			surface.rect(levelButton.get(i).x, levelButton.get(i).y, levelButton.get(i).width,
+					levelButton.get(i).height, 10, 10, 10, 10);
+			if (!cleared[i]) {
+				surface.fill(0);
+			}
+			str = "level " + (i + 1);
+			surface.text(str, levelButton.get(i).x + levelButton.get(i).width / 2 - surface.textWidth(str) / 2,
+					levelButton.get(i).y + levelButton.get(i).height / 2);
 		}
-		surface.rect(level2.x, level2.y, level2.width, level2.height, 10, 10, 10, 10);
-		surface.fill(0);
-		str = "level 2";
-		w = surface.textWidth(str);
-		surface.text(str, level2.x + level2.width / 2 - w / 2, level2.y + level2.height / 2);
+//		String str = "level 1";
+//		float w = surface.textWidth(str);
+//		surface.text(str, level1.x + level1.width / 2 - w / 2, level1.y + level1.height / 2);
+
+//		surface.rect(level2.x, level2.y, level2.width, level2.height, 10, 10, 10, 10);
+//		surface.fill(0);
+//		str = "level 2";
+//		w = surface.textWidth(str);
+//		surface.text(str, level2.x + level2.width / 2 - w / 2, level2.y + level2.height / 2);
 
 		surface.noFill();
 		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
@@ -74,11 +80,11 @@ public class LevelSelect extends Screen {
 	public void mousePressed() {
 		Board b = new Board(surface);
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
-		if (level1.contains(p)) {
+		if (levelButton.get(0).contains(p)) {
 			thislevel = 1;
 			switchScreen(ScreenSwitcher.SCREEN4);
 		}
-		if (level2.contains(p) && cleared[1]) {
+		if (levelButton.get(1).contains(p) && cleared[1]) {
 			thislevel = 2;
 			switchScreen(ScreenSwitcher.SCREEN4);
 		}
