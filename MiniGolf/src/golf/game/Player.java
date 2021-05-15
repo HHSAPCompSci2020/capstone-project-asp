@@ -16,6 +16,7 @@ public class Player {
 	private int startX;
 	private int startY;
 	private int color;
+	
 
 	/*
 	 * creates a new player with the given location
@@ -201,6 +202,8 @@ public class Player {
 	 * Draws the player on the parameter PApplet
 	 */
 	public void draw(PApplet surface, float width, float height) {
+		surface.pushStyle();
+		surface.fill(color);
 		float boxHeight = ((3*height/4) - (height/22))/20;
 		float boxWidth = width/22;
 		float size = 25;
@@ -212,6 +215,7 @@ public class Player {
 			size = boxHeight;
 		}
 		surface.ellipse(hx, hy, size, size);
+		surface.popStyle();
 		// surface.image(surface.loadImage("Assets/ballBLACK.png"), x, y);
 	}
 
