@@ -63,9 +63,10 @@ public class Player {
 	/***
 	 * Moves the player according to the parameters, and executes the correct
 	 * behavior based on the tiles it lands on.
-	 * @param c the card that is currently held
-	 * @param l the current level that the player is in
-	 * @param p Powerups that may affect the movement
+	 * 
+	 * @param c   the card that is currently held
+	 * @param l   the current level that the player is in
+	 * @param p   Powerups that may affect the movement
 	 * @param dir an integer value representing which direction the player moved in
 	 */
 	public Point move(Card c, Level l, PowerUp p, int dir) {
@@ -77,11 +78,11 @@ public class Player {
 		int dy = 0;
 		if (dir == 1)
 			dy = -1;
-		 if (dir == 2)
+		if (dir == 2)
 			dy = 1;
-		 if (dir == 3)
+		if (dir == 3)
 			dx = 1;
-		 if (dir == 4)
+		if (dir == 4)
 			dx = -1;
 
 		// applies powerup if applicable
@@ -157,11 +158,11 @@ public class Player {
 				break;
 			// Wall
 			if (h == '#') {
-				x-=dx;
-				y-=dy;
+				x -= dx;
+				y -= dy;
 				dx *= -1;
 				dy *= -1;
-				
+
 			}
 			// Up tile
 			if (h == '^') {
@@ -185,14 +186,12 @@ public class Player {
 			}
 
 		}
-	
 
 		// Checks if you end up on a flag
 		if (l.tiles[y][x] == 'X') {
-			
-			
+
 		}
-			 // whatever it does when you win
+		// whatever it does when you win
 		return new Point(x, y);
 
 	}
@@ -201,18 +200,18 @@ public class Player {
 	 * Draws the player on the parameter PApplet
 	 */
 	public void draw(PApplet surface, float width, float height) {
-		float boxHeight = ((3*height/4) - (height/22))/20;
-		float boxWidth = width/22;
+		float boxHeight = ((3 * height / 4) - (height / 22)) / 20;
+		float boxWidth = width / 22;
 		float size = 25;
-		float hx = (boxWidth)*(x+1) + boxWidth/2;
-		float hy = (height/22)+boxHeight*y + boxHeight/2;
+		float hx = (boxWidth) * (x + 1) + boxWidth / 2;
+		float hy = (height / 22) + boxHeight * y + boxHeight / 2;
 		if (boxHeight > boxWidth) {
 			size = boxWidth;
 		} else {
 			size = boxHeight;
 		}
 		surface.ellipse(hx, hy, size, size);
-		// surface.image(surface.loadImage("Assets/ballBLACK.png"), x, y);
+		surface.image(surface.loadImage("Assets/ballBLACK.png"), x, y);
 	}
 
 	/*
