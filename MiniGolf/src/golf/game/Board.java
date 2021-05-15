@@ -71,7 +71,7 @@ public class Board extends Screen {
 	public void draw() {
 
 		surface.pushStyle();
-
+		
 		surface.background(255, 255, 255);
 		surface.fill(255, 0, 0);
 		l.drawGrid(this, surface);
@@ -80,7 +80,7 @@ public class Board extends Screen {
 		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
 		surface.rect(back1.x, back1.y, back1.width, back1.height);
 
-		// surface.fill(0);
+		surface.fill(0);
 		String str = "Next";
 		float w = surface.textWidth(str);
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);

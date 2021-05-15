@@ -200,6 +200,9 @@ public class Player {
 	 * Draws the player on the parameter PApplet
 	 */
 	public void draw(PApplet surface, float width, float height) {
+
+		surface.pushStyle();
+		surface.fill(color);
 		float boxHeight = ((3 * height / 4) - (height / 22)) / 20;
 		float boxWidth = width / 22;
 		float size = 25;
@@ -211,7 +214,9 @@ public class Player {
 			size = boxHeight;
 		}
 		surface.ellipse(hx, hy, size, size);
-		surface.image(surface.loadImage("Assets/ballBLACK.png"), x, y);
+
+		surface.popStyle();
+		// surface.image(surface.loadImage("Assets/ballBLACK.png"), x, y);
 	}
 
 	/*
