@@ -108,9 +108,4 @@ public class LevelSelect extends Screen {
 
 	}
 
-	public void levelCleared(Level l)
-	{
-		cleared[l.]=true;
-	}
-
 }
