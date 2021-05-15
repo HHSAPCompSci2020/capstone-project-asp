@@ -16,6 +16,7 @@ public class Player {
 	private int startX;
 	private int startY;
 	private int color;
+	private boolean cleared;
 
 	/*
 	 * creates a new player with the given location
@@ -30,6 +31,7 @@ public class Player {
 		startX = x;
 		startY = y;
 		this.color = color;
+		cleared = false;
 	}
 
 	/**
@@ -189,14 +191,13 @@ public class Player {
 
 		// Checks if you end up on a flag
 		if (l.tiles[y][x] == 'X') {
-
+			cleared = true;
 		}
-		// whatever it does when you win
 		return new Point(x, y);
 
 	}
 
-	/*
+	/**
 	 * Draws the player on the parameter PApplet
 	 */
 	public void draw(PApplet surface, float width, float height) {
@@ -219,7 +220,7 @@ public class Player {
 		// surface.image(surface.loadImage("Assets/ballBLACK.png"), x, y);
 	}
 
-	/*
+	/**
 	 * Resets the player to the starting position
 	 */
 	public void reset() {
@@ -227,4 +228,11 @@ public class Player {
 		y = startY;
 	}
 
+	/**
+	 * @return boolean true if level has been cleared, false otherwise
+	 */
+	public boolean isCleared() {
+		return cleared;
+	}
+	
 }

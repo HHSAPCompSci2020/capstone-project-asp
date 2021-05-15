@@ -22,6 +22,8 @@ public class Board extends Screen {
 	public ArrayList<Rectangle2D.Float> cardMenu = new ArrayList<Rectangle2D.Float>();
 	private Player p;
 	private int level;
+	private boolean isCleared;
+	private boolean[] cleared;
 
 	/**
 	 * Creates a new Board Screen
@@ -35,7 +37,7 @@ public class Board extends Screen {
 
 	}
 
-	public Board(DrawingSurface drawingSurface, int thislevel) {
+	public Board(DrawingSurface drawingSurface, int thislevel, boolean[] cleared) {
 		super(800, 800);
 		Level l = new Level("Levels//Level" + thislevel + "//Level" + thislevel + "board.txt",
 				"Levels//Level" + thislevel + "//Level" + thislevel + "cards.txt",
@@ -49,6 +51,8 @@ public class Board extends Screen {
 		Music m = new Music();
 		m.actionPerformed(null);
 		instantiateCards();
+		isCleared = false;
+		this.cleared = cleared;
 		System.out.println(cardMenu.size());
 
 		System.out.println(cardMenu.get(0).getCenterX());
@@ -116,7 +120,15 @@ public class Board extends Screen {
 				l.c.remove(cardSelected);
 				cardSelected = null;
 			}
-
+			
+		}
+		if (p.isCleared()) {
+			isCleared = true;
+			cleared[level] = true;
+		}
+		if (!p.isCleared() && cardMenu.size() == 0) {
+			l.reset();
+			this.instantiateCards();
 		}
 		surface.popStyle();
 
@@ -124,7 +136,7 @@ public class Board extends Screen {
 
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
-		if (back.contains(p)) {
+		if (back.contains(p) && this.p.isCleared()) {
 			this.switchScreen(3);
 		}
 		if (back1.contains(p)) {
@@ -152,7 +164,7 @@ public class Board extends Screen {
 	public void switchScreen(int i) {
 		if (i == 3) {
 
-			Board b = new Board(surface, level + 1);
+			Board b = new Board(surface, level + 1, cleared);
 			surface.screens.add(3, b);
 
 			surface.activeScreen = surface.screens.get(i);
