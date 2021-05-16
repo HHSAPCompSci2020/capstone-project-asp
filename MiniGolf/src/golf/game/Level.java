@@ -256,7 +256,7 @@ public class Level {
 		}
 
 	}
-	
+
 	public void drawPowerUps(Board b, PApplet p) {
 		if (this.p.size() > 0) {
 			float startx = b.DRAWING_WIDTH / 20;
@@ -267,8 +267,6 @@ public class Level {
 			for (int i = 0; i < this.p.size(); i++) {
 				p.text(this.p.get(i).getMagnitude(), change * i + startx, starty);
 				p.text(this.p.get(i).getJMagnitude(), change * i + startx, starty + 10);
-				
-			
 
 			}
 		}
