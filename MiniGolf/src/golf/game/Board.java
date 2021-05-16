@@ -18,13 +18,13 @@ public class Board extends Screen {
 	private PowerUp powerupSelected;
 	private boolean isMoving;
 	private DrawingSurface surface;
+	private Rectangle next;
 	private Rectangle back;
-	private Rectangle back1;
 	private ArrayList<Rectangle2D.Float> cardMenu = new ArrayList<Rectangle2D.Float>();
 	private Player p;
 	private int level;
 	private ArrayList<Rectangle2D.Float> powerUpMenu = new ArrayList<Rectangle2D.Float>();
-	
+
 	private boolean[] cleared;
 
 	/**
@@ -47,12 +47,12 @@ public class Board extends Screen {
 		surface = drawingSurface;
 		this.level = thislevel;
 		this.l = l;
-		back = new Rectangle(700, 700, 100, 100);
-		back1 = new Rectangle(0, 700, 100, 100);
+		next = new Rectangle(700, 700, 100, 100);
+		back = new Rectangle(0, 700, 100, 100);
 		p = l.findPlayer();
-		
+
 		isMoving = false;
-		
+
 		Music m = new Music();
 		m.actionPerformed(null);
 		instantiateCards();
@@ -62,18 +62,18 @@ public class Board extends Screen {
 
 		System.out.println(cardMenu.get(0).getCenterX());
 	}
-	
+
 	private void instantiatePowerUps() {
-		if(l.p.size()>0) {
-		float startx = DRAWING_WIDTH / 20;
-		float starty = DRAWING_HEIGHT * 9 / 10;
+		if (l.p.size() > 0) {
+			float startx = DRAWING_WIDTH / 20;
+			float starty = DRAWING_HEIGHT * 9 / 10;
 
-		float change = (DRAWING_WIDTH - DRAWING_WIDTH / 20) / l.p.size();
+			float change = (DRAWING_WIDTH - DRAWING_WIDTH / 20) / l.p.size();
 
-		for (int i = 0; i < l.p.size(); i++) {
+			for (int i = 0; i < l.p.size(); i++) {
 
-			this.powerUpMenu.add(new Rectangle2D.Float(change * i + startx, starty, 20, 20));
-		}
+				this.powerUpMenu.add(new Rectangle2D.Float(change * i + startx, starty, 20, 20));
+			}
 		}
 	}
 
@@ -94,27 +94,28 @@ public class Board extends Screen {
 	public void draw() {
 
 		surface.pushStyle();
-		
+
 		surface.background(255, 255, 255);
 		surface.fill(255, 0, 0);
 		l.drawGrid(this, surface);
 		l.drawCard(this, surface);
 		isMoving = p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT, isMoving);
 		l.drawPowerUps(this, surface);
-		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
-		surface.rect(back1.x, back1.y, back1.width, back1.height);
+		surface.noFill();
+		surface.rect(next.x, next.y, next.width, next.height, 10, 10, 10, 10);
+		surface.rect(back.x, back.y, back.width, back.height);
 
 		surface.fill(0);
 		String str = "Next";
 		float w = surface.textWidth(str);
-		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
+		surface.text(str, next.x + next.width / 2 - w / 2, next.y + next.height / 2);
 		str = "Back";
 		w = surface.textWidth(str);
-		surface.text(str, back1.x + back1.width / 2 - w / 2, back1.y + back1.height / 2);
+		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
 
 		surface.fill(0, 255, 0);
 
-		if (cardSelected != null && powerupSelected!= null && !isMoving) {
+		if (cardSelected != null && powerupSelected != null && !isMoving) {
 
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
 				powerupSelected.affect(cardSelected);
@@ -130,14 +131,14 @@ public class Board extends Screen {
 				System.out.println("this");
 				l.c.remove(cardSelected);
 				cardSelected = null;
-				
+
 				powerupSelected = null;
 			}
 
 			if (surface.isPressed(KeyEvent.VK_UP)) {
 				powerupSelected.affect(cardSelected);
 				p.move(cardSelected, l, null, 1);
-				
+
 				l.c.remove(cardSelected);
 				cardSelected = null;
 				powerupSelected = null;
@@ -150,48 +151,46 @@ public class Board extends Screen {
 				cardSelected = null;
 				powerupSelected = null;
 			}
-			
+
 		}
-		
-		if (cardSelected != null && powerupSelected== null && !isMoving) {
+
+		if (cardSelected != null && powerupSelected == null && !isMoving) {
 
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
-				
+
 				p.move(cardSelected, l, null, 4);
 
 				l.c.remove(cardSelected);
 				cardSelected = null;
-				
+
 			}
 			if (surface.isPressed(KeyEvent.VK_RIGHT)) {
-			
+
 				p.move(cardSelected, l, null, 3);
 				System.out.println("this");
 				l.c.remove(cardSelected);
 				cardSelected = null;
-				
-				
+
 			}
 
 			if (surface.isPressed(KeyEvent.VK_UP)) {
 				p.move(cardSelected, l, null, 1);
-				
+
 				l.c.remove(cardSelected);
 				cardSelected = null;
-				
 
 			}
 			if (surface.isPressed(KeyEvent.VK_DOWN)) {
-				
+
 				p.move(cardSelected, l, null, 2);
 				l.c.remove(cardSelected);
 				cardSelected = null;
-				
+
 			}
-			
+
 		}
 		if (p.isCleared()) {
-			
+
 			cleared[level] = true;
 		}
 		if (!p.isCleared() && cardMenu.size() == 0) {
@@ -204,10 +203,10 @@ public class Board extends Screen {
 
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
-		if (back.contains(p) && this.p.isCleared()) {
+		if (next.contains(p) && this.p.isCleared() && !isMoving) {
 			this.switchScreen(3);
 		}
-		if (back1.contains(p)) {
+		if (back.contains(p)) {
 			this.switchScreen(2);
 		}
 
@@ -222,12 +221,12 @@ public class Board extends Screen {
 
 			}
 
-		}for (int i = 0; i < l.p.size(); i++) {
+		}
+		for (int i = 0; i < l.p.size(); i++) {
 
 			if (powerUpMenu.get(i).contains(p)) {
 				powerupSelected = l.p.get(i);
 				System.out.println("hit");
-				
 
 			}
 
