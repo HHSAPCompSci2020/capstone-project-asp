@@ -50,6 +50,9 @@ public class Board extends Screen {
 		back = new Rectangle(700, 700, 100, 100);
 		back1 = new Rectangle(0, 700, 100, 100);
 		p = l.findPlayer();
+		
+		isMoving = false;
+		
 		Music m = new Music();
 		m.actionPerformed(null);
 		instantiateCards();
@@ -96,7 +99,7 @@ public class Board extends Screen {
 		surface.fill(255, 0, 0);
 		l.drawGrid(this, surface);
 		l.drawCard(this, surface);
-		p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
+		isMoving = p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT, isMoving);
 		l.drawPowerUps(this, surface);
 		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
 		surface.rect(back1.x, back1.y, back1.width, back1.height);
@@ -111,7 +114,7 @@ public class Board extends Screen {
 
 		surface.fill(0, 255, 0);
 
-		if (cardSelected != null && powerupSelected!= null) {
+		if (cardSelected != null && powerupSelected!= null && !isMoving) {
 
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
 				powerupSelected.affect(cardSelected);
@@ -150,7 +153,7 @@ public class Board extends Screen {
 			
 		}
 		
-		if (cardSelected != null && powerupSelected== null) {
+		if (cardSelected != null && powerupSelected== null && !isMoving) {
 
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
 				

@@ -16,9 +16,14 @@ public class Player {
 	private int y;
 	private int startX;
 	private int startY;
+	private int movingX;
+	private int movingY;
 	private int color;
 	private boolean cleared;
 	private ArrayList<Point> next;
+	private int moveTimer;
+	private boolean jump;
+	float size;
 
 	/*
 	 * creates a new player with the given location
@@ -32,9 +37,14 @@ public class Player {
 		this.y = y;
 		startX = x;
 		startY = y;
+		movingX = x;
+		movingY = y;
 		this.color = color;
 		cleared = false;
 		next = new ArrayList<Point>();
+		moveTimer = 60;
+		jump = false;
+		size = 25;
 	}
 
 	/**
@@ -78,8 +88,7 @@ public class Player {
 		// If it on a wall, don't move
 		if (l.tiles[y][x] == '#')
 			return new Point(x, y);
-		
-		//Adds the starting location to the arraylist
+
 		next.add(new Point(x, y));
 		
 		// sets values based on the direction, 1 is up, 2 is down, 3 is right, 4 is left
@@ -145,8 +154,9 @@ public class Player {
 				dy = 0;
 				dx = -1;
 			}
-			next.add(new Point(x, y));
 		}
+		next.add(new Point(x, y));
+		
 
 		// move
 		for (int i = 0; i < moveDist; i++) {
@@ -167,6 +177,7 @@ public class Player {
 				break;
 			// Wall
 			if (h == '#') {
+				next.add(new Point(x, y));
 				x -= dx;
 				y -= dy;
 				dx *= -1;
@@ -207,26 +218,81 @@ public class Player {
 	/**
 	 * Draws the player on the parameter PApplet
 	 */
-	public void draw(PApplet surface, float width, float height) {
-
+	public boolean draw(PApplet surface, float width, float height, boolean moving) {
+		moveTimer--;
 		surface.pushStyle();
 		surface.fill(color);
 		float boxHeight = ((3 * height / 4) - (height / 22)) / 20;
 		float boxWidth = width / 22;
-		float size = 25;
-		
-		
-		
-		float hx = (boxWidth) * (x + 1) + boxWidth / 2;
-		float hy = (height / 22) + boxHeight * y + boxHeight / 2;
-		if (boxHeight > boxWidth) {
-			size = boxWidth;
-		} else {
-			size = boxHeight;
+		if (!jump) {
+			if (boxHeight > boxWidth) {
+				size = boxWidth;
+			} else {
+				size = boxHeight;
+			} 
 		}
+		
+		
+	    if (next.size() == 0) {
+	    	surface.ellipse((boxWidth) * (x + 1) + boxWidth / 2, (height / 22) + boxHeight * y + boxHeight / 2, size, size);
+	    	surface.popStyle();
+	    	return false;
+	    }
+	    if (moving == false) {
+	    	movingX = (int) next.get(0).getX();
+	    	movingY = (int) next.get(0).getY();	
+	    	next.remove(0);
+	    	jump = true;
+	    }
+	    if (jump && next.size() != 0) {
+	    	if ((int) next.get(0).getX() != movingX && moveTimer <= 0){
+	    		size += 10;
+	    		if (movingX > (int) next.get(0).getX()) {
+	    			movingX--;
+	    		} else {
+	    			movingX++;
+	    		}
+	    		moveTimer = 30;
+	    	} 
+	    	if ((int) next.get(0).getY() != movingY && moveTimer <= 0) {
+	    		size += 10;
+	    		if (movingY > (int) next.get(0).getY()) {
+	    			movingY--;
+	    		} else {
+	    			movingY++;
+	    		}
+	    		moveTimer = 30;
+	    	}
+	    	
+	    	if ((int) next.get(0).getY() == movingY && (int) next.get(0).getX() == movingX && moveTimer <= 0) {
+	    		if (boxHeight > boxWidth) {
+					size = boxWidth;
+				} else {
+					size = boxHeight;
+				} 
+	    		jump = false;
+	    		moveTimer = 30;
+	    		next.remove(0);
+	    	}
+	    }
+		if (!jump) {
+			if (moveTimer <= 0) {
+				movingX = (int) next.get(0).getX();
+				movingY = (int) next.get(0).getY();
+				next.remove(0);
+				moveTimer = 30;
+			}
+			
+		}
+	    
+	    float hx = (boxWidth) * (movingX + 1) + boxWidth / 2;
+		float hy = (height / 22) + boxHeight * movingY + boxHeight / 2;
 		surface.ellipse(hx, hy, size, size);
 
 		surface.popStyle();
+		return true;
+
+		
 		// surface.image(surface.loadImage("Assets/ballBLACK.png"), x, y);
 	}
 
