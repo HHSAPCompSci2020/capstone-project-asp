@@ -259,10 +259,10 @@ public class Level {
 
 	public void drawPowerUps(Board b, PApplet p) {
 		if (this.p.size() > 0) {
-			float startx = b.DRAWING_WIDTH / 20;
+			float startx = b.DRAWING_WIDTH / 5;
 			float starty = b.DRAWING_HEIGHT * 9 / 10;
 
-			float change = (b.DRAWING_WIDTH - b.DRAWING_WIDTH / 200) / this.p.size();
+			float change = (b.DRAWING_WIDTH - b.DRAWING_WIDTH / 5) / this.p.size();
 			p.fill(0);
 			for (int i = 0; i < this.p.size(); i++) {
 				p.text(this.p.get(i).getMagnitude(), change * i + startx, starty);
