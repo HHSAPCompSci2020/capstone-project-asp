@@ -250,7 +250,7 @@ public class Level {
 				p.text(c.get(i).getMagnitude(), change * i + startx, starty);
 				p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10);
 				p.noFill();
-				p.rect(change * i + startx - 10, starty - 20, 100, 500);
+			
 
 			}
 		}

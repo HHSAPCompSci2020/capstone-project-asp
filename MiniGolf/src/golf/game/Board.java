@@ -47,8 +47,8 @@ public class Board extends Screen {
 		surface = drawingSurface;
 		this.level = thislevel;
 		this.l = l;
-		next = new Rectangle(700, 700, 100, 100);
-		back = new Rectangle(0, 700, 100, 100);
+		next = new Rectangle(715, 715, 85, 85);
+		back = new Rectangle(0, 715, 85, 85);
 		p = l.findPlayer();
 
 		isMoving = false;
@@ -87,7 +87,7 @@ public class Board extends Screen {
 
 		for (int i = 0; i < l.c.size(); i++) {
 
-			this.cardMenu.add(new Rectangle2D.Float(change * i + startx, starty, 50, 75));
+			this.cardMenu.add(new Rectangle2D.Float(change * i + startx, starty, 50, 70));
 		}
 
 	}
@@ -99,7 +99,7 @@ public class Board extends Screen {
 		surface.background(255, 255, 255);
 		surface.fill(255, 0, 0);
 		l.drawGrid(this, surface);
-		l.drawCard(this, surface);
+	
 		isMoving = p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT, isMoving);
 		
 		surface.noFill();
@@ -114,7 +114,9 @@ public class Board extends Screen {
 		w = surface.textWidth(str);
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
 
-		surface.fill(0, 255, 0);
+	//	surface.fill(0, 255, 0);
+		
+		surface.fill(255,255,255);
 		if (l.p.size() > 0) {
 			float startx = DRAWING_WIDTH / 5;
 			float starty = DRAWING_HEIGHT * 9 / 10;
@@ -127,7 +129,21 @@ public class Board extends Screen {
 			
 			}
 		}
+		if(l.c.size()>0) {
+
+			float startx = DRAWING_WIDTH / 22;
+			float starty = DRAWING_HEIGHT * 4 / 5;
+
+			float change = (DRAWING_WIDTH - DRAWING_WIDTH / 22) / l.c.size();
+
+			for (int i = 0; i < l.c.size(); i++) {
+
+				surface.rect(change * i + startx, starty, 50, 70);
+			}
+			l.drawCard(this, surface);
+		}
 		l.drawPowerUps(this, surface);
+		
 		if (cardSelected != null && powerupSelected != null && !isMoving) {
 
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
