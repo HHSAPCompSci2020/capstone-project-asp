@@ -5,12 +5,14 @@ import java.awt.Point;
  * @author Ansel
  */
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class Settings extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle back;
 	private Rectangle credits;
+	private ArrayList<Rectangle> colors = new ArrayList<Rectangle>();
 
 	/*
 	 * Creates new settings
@@ -23,6 +25,9 @@ public class Settings extends Screen {
 
 		back = new Rectangle(0, 0, 100, 100);
 		credits = new Rectangle(300, 200, 200, 100);
+		for (int i = 0; i < 7; i++) {
+			colors.add(new Rectangle(50+(i*100), 400, 100, 100));
+		}
 	}
 
 	/*
@@ -42,6 +47,9 @@ public class Settings extends Screen {
 
 		surface.noFill();
 		surface.rect(credits.x, credits.y, credits.width, credits.height, 10, 10, 10, 10);
+		for (int i = 0; i < 7; i++) {
+			surface.rect((float)colors.get(i).getX(), (float)colors.get(i).getY(), (float)colors.get(i).getWidth(), (float)colors.get(i).getHeight());
+		}
 		surface.fill(0);
 		str = "credits";
 		w = surface.textWidth(str);
@@ -59,6 +67,12 @@ public class Settings extends Screen {
 			surface.switchScreen(ScreenSwitcher.SCREEN1);
 		if (credits.contains(p))
 			surface.switchScreen(ScreenSwitcher.SCREEN5);
+		for (int i = 0; i < 7; i++) {
+			if (colors.get(i).contains(p)) {
+				Player.changeColor(i);
+			}
+		}
+		
 	}
 
 	@Override

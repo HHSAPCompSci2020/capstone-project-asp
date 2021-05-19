@@ -18,7 +18,7 @@ public class Player {
 	private int startY;
 	private int movingX;
 	private int movingY;
-	private int color;
+	private static int color;
 	private boolean cleared;
 	private ArrayList<Point> next;
 	private int moveTimer;
@@ -39,7 +39,7 @@ public class Player {
 		startY = y;
 		movingX = x;
 		movingY = y;
-		this.color = color;
+		Player.color = color;
 		cleared = false;
 		next = new ArrayList<Point>();
 		moveTimer = 60;
@@ -309,6 +309,15 @@ public class Player {
 	 */
 	public boolean isCleared() {
 		return cleared;
+	}
+	
+	
+	/**
+	 * Changes the color of the player
+	 * @param c the number associated with the desired color
+	 */
+	public static void changeColor(int c) {
+		color = c;
 	}
 	
 }
