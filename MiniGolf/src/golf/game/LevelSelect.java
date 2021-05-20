@@ -42,9 +42,15 @@ public class LevelSelect extends Screen {
 		surface.background(255, 255, 255);
 		String str;
 		float w;
-		for (int i = 0; i <= 10; i++) {
+		int j = 0;
+		int row = 0;
+		for (int i = 0; i < 20; i++) {
+			if (j % 4 == 0) {
+				j = 0;
+				row++;
+			}
 			surface.fill(0);
-			levelButton.add(new Rectangle(100 + 150 * i, 200, 150, 100));
+			levelButton.add(new Rectangle(100 + 150 * j, 50+120*row, 150, 100));
 			if (cleared[i]) {
 				surface.noFill();
 			}
@@ -54,6 +60,7 @@ public class LevelSelect extends Screen {
 			str = "level " + (i + 1);
 			surface.text(str, levelButton.get(i).x + levelButton.get(i).width / 2 - surface.textWidth(str) / 2,
 					levelButton.get(i).y + levelButton.get(i).height / 2);
+			j++;
 		}
 
 		surface.noFill();
@@ -72,7 +79,11 @@ public class LevelSelect extends Screen {
 	public void mousePressed() {
 		Board b = new Board(surface);
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
-		for (int i = 0; i <= 10; i++) {
+		for (int i = 0; i < 20; i++) {
+//			if (levelButton.get(i).contains(p) && cleared[i]) {
+//				thislevel = i + 1;
+//				switchScreen(ScreenSwitcher.SCREEN4);
+//			}
 			if (levelButton.get(i).contains(p)) {
 				thislevel = i + 1;
 				switchScreen(ScreenSwitcher.SCREEN4);
