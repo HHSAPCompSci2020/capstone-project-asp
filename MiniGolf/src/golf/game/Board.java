@@ -29,6 +29,7 @@ public class Board extends Screen {
 	private PImage nextbutton;
 	private PImage backbutton;
 	private boolean[] cleared;
+	private ArrayList<PImage> cards = new ArrayList<PImage>();
 
 	/**
 	 * Creates a new Board Screen
@@ -69,6 +70,9 @@ public class Board extends Screen {
 	public void setup() {
 	nextbutton = 	surface.loadImage("NextButton.png");
 	backbutton = surface.loadImage("BackButton.png");
+	for(int i = 0; i<l.c.size(); i++) {
+		cards.add(surface.loadImage("Assets//M"+l.c.get(i).getMagnitude()+"J"+l.c.get(i).getJMagnitude()+".png"));
+	}
 	}
 
 	private void instantiatePowerUps() {
@@ -85,6 +89,7 @@ public class Board extends Screen {
 			
 			}
 		}
+		
 	}
 
 	private void instantiateCards() {
@@ -149,8 +154,11 @@ public class Board extends Screen {
 			float change = (DRAWING_WIDTH - DRAWING_WIDTH / 22) / l.c.size();
 
 			for (int i = 0; i < l.c.size(); i++) {
-
+				
 				surface.rect(change * i + startx, starty, 50, 70);
+				cards.get(i).resize(49, 69);
+				surface.image(cards.get(i), change * i + startx, starty);
+				
 			}
 			l.drawCard(this, surface);
 		}
