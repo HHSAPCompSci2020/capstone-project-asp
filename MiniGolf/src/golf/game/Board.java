@@ -30,6 +30,8 @@ public class Board extends Screen {
 	private PImage backbutton;
 	private boolean[] cleared;
 	private ArrayList<PImage> cards = new ArrayList<PImage>();
+	private ArrayList<PImage> playerImages = new ArrayList<PImage>();
+	private int cardSelectedIndex;
 
 	/**
 	 * Creates a new Board Screen
@@ -73,6 +75,13 @@ public class Board extends Screen {
 	for(int i = 0; i<l.c.size(); i++) {
 		cards.add(surface.loadImage("Assets//M"+l.c.get(i).getMagnitude()+"J"+l.c.get(i).getJMagnitude()+".png"));
 	}
+	playerImages.add(surface.loadImage("Assets//ballBLACK.png"));
+	playerImages.add(surface.loadImage("Assets//ballBLUE.png"));
+	playerImages.add(surface.loadImage("Assets//ballGREEN.png"));
+	playerImages.add(surface.loadImage("Assets//ballRED.png"));
+	playerImages.add(surface.loadImage("Assets//ballSWAG.png"));
+	playerImages.add(surface.loadImage("Assets//ballWHITE.png"));
+	playerImages.add(surface.loadImage("Assets//ballYELLOW.png"));
 	}
 
 	private void instantiatePowerUps() {
@@ -116,7 +125,7 @@ public class Board extends Screen {
 		surface.fill(255, 0, 0);
 		l.drawGrid(this, surface);
 	
-		isMoving = p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT, isMoving);
+		isMoving = p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT, isMoving, playerImages.get(p.getColor()));
 		
 		surface.noFill();
 		surface.rect(next.x, next.y, next.width, next.height, 10, 10, 10, 10);
@@ -160,28 +169,27 @@ public class Board extends Screen {
 				surface.image(cards.get(i), change * i + startx, starty);
 				
 			}
-			l.drawCard(this, surface);
 		}
 		l.drawPowerUps(this, surface);
 		
-		if (cardSelected != null && powerupSelected != null && !isMoving) {
+		if (cardSelected != null && !isMoving) {
 
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
-				powerupSelected.affect(cardSelected);
-				p.move(cardSelected, l, null, 4);
+				p.move(cardSelected, l, powerupSelected, 4);
 				l.p.remove(powerupSelected);
 				l.c.remove(cardSelected);
+				cards.remove(cardSelectedIndex);
 				cardSelected = null;
 				powerupSelected = null;
 				this.instantiateCards();
 				this.instantiatePowerUps();
 			}
 			if (surface.isPressed(KeyEvent.VK_RIGHT)) {
-				powerupSelected.affect(cardSelected);
-				p.move(cardSelected, l, null, 3);
+				p.move(cardSelected, l, powerupSelected, 3);
 				l.p.remove(powerupSelected);
 				System.out.println("this");
 				l.c.remove(cardSelected);
+				cards.remove(cardSelectedIndex);
 				cardSelected = null;
 
 				powerupSelected = null;
@@ -190,10 +198,10 @@ public class Board extends Screen {
 			}
 
 			if (surface.isPressed(KeyEvent.VK_UP)) {
-				powerupSelected.affect(cardSelected);
-				p.move(cardSelected, l, null, 1);
+				p.move(cardSelected, l, powerupSelected, 1);
 				l.p.remove(powerupSelected);
 				l.c.remove(cardSelected);
+				cards.remove(cardSelectedIndex);
 				cardSelected = null;
 				powerupSelected = null;
 				this.instantiateCards();
@@ -201,10 +209,10 @@ public class Board extends Screen {
 
 			}
 			if (surface.isPressed(KeyEvent.VK_DOWN)) {
-				powerupSelected.affect(cardSelected);
-				p.move(cardSelected, l, null, 2);
+				p.move(cardSelected, l, powerupSelected, 2);
 				l.c.remove(cardSelected);
 				l.p.remove(powerupSelected);
+				cards.remove(cardSelectedIndex);
 				cardSelected = null;
 				powerupSelected = null;
 				this.instantiateCards();
@@ -213,42 +221,6 @@ public class Board extends Screen {
 
 		}
 
-		if (cardSelected != null && powerupSelected == null && !isMoving) {
-
-			if (surface.isPressed(KeyEvent.VK_LEFT)) {
-
-				p.move(cardSelected, l, null, 4);
-
-				l.c.remove(cardSelected);
-				cardSelected = null;
-				this.instantiateCards();
-
-			}
-			if (surface.isPressed(KeyEvent.VK_RIGHT)) {
-
-				p.move(cardSelected, l, null, 3);
-				System.out.println("this");
-				l.c.remove(cardSelected);
-				cardSelected = null;
-				this.instantiateCards();
-			}
-
-			if (surface.isPressed(KeyEvent.VK_UP)) {
-				p.move(cardSelected, l, null, 1);
-
-				l.c.remove(cardSelected);
-				cardSelected = null;
-				this.instantiateCards();
-			}
-			if (surface.isPressed(KeyEvent.VK_DOWN)) {
-
-				p.move(cardSelected, l, null, 2);
-				l.c.remove(cardSelected);
-				cardSelected = null;
-				this.instantiateCards();
-			}
-
-		}
 		if (p.isCleared()) {
 
 			cleared[level] = true;
@@ -274,6 +246,7 @@ public class Board extends Screen {
 
 			if (cardMenu.get(i).contains(p)) {
 				cardSelected = l.c.get(i);
+				cardSelectedIndex = i;
 				System.out.println("hit");
 				if (cardSelected == null) {
 					System.out.println("?");
@@ -304,8 +277,9 @@ public class Board extends Screen {
 			surface.screens.add(3, b);
 
 			surface.activeScreen = surface.screens.get(i);
-			surface.screens.remove(4);
 			surface.setup();
+			surface.screens.remove(4);
+			
 
 		} else {
 			surface.activeScreen = surface.screens.get(i);

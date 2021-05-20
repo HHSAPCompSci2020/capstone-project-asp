@@ -240,24 +240,6 @@ public class Level {
 	 * @param surface to draw stuff
 	 */
 
-	public void drawCard(Board b, PApplet p) {
-		if (this.c.size() > 0) {
-			float startx = b.DRAWING_WIDTH / 22;
-			float starty = b.DRAWING_HEIGHT * 4 / 5;
-
-			float change = (b.DRAWING_WIDTH - b.DRAWING_WIDTH / 22) / c.size();
-			p.fill(0);
-			for (int i = 0; i < c.size(); i++) {
-				p.text(c.get(i).getMagnitude(), change * i + startx, starty);
-				p.text(c.get(i).getJMagnitude(), change * i + startx, starty + 10);
-				p.noFill();
-			
-
-			}
-		}
-
-	}
-
 	public void drawPowerUps(Board b, PApplet p) {
 		if (this.p.size() > 0) {
 			float startx = b.DRAWING_WIDTH / 5;
@@ -400,7 +382,7 @@ public class Level {
 		for (int i = 0; i < tiles.length; i++) {
 			for (int p = 0; p < tiles[0].length; p++) {
 				if (tiles[i][p] == 'p') {
-					return new Player(i, p, 0);
+					return new Player(i, p);
 				}
 			}
 		}

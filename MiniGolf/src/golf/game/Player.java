@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 
 /**
@@ -33,14 +34,13 @@ public class Player {
 	 * 
 	 * @param y-location for the player
 	 */
-	public Player(int x, int y, int color) {
+	public Player(int x, int y) {
 		this.x = x;
 		this.y = y;
 		startX = x;
 		startY = y;
 		movingX = x;
 		movingY = y;
-		Player.color = color;
 		cleared = false;
 		next = new ArrayList<Point>();
 		moveTimer = 60;
@@ -235,8 +235,9 @@ public class Player {
 		
 		
 	    if (next.size() == 0) {
+	    	surface.imageMode(PConstants.CENTER);
 	    	p.resize((int)size, (int)size);
-	    	surface.image(p, (boxWidth) * (x + 1) + boxWidth / 2, (boxWidth) * (x + 1) + boxWidth / 2);
+	    	surface.image(p, (boxWidth) * (x + 1) + boxWidth / 2, (height / 22) + boxHeight * y + boxHeight / 2);
 //	    	surface.ellipse((boxWidth) * (x + 1) + boxWidth / 2, (boxWidth) * (x + 1) + boxWidth / 2, size, size);
 	    	surface.popStyle();
 	    	return false;
@@ -291,6 +292,7 @@ public class Player {
 	    float hx = (boxWidth) * (movingX + 1) + boxWidth / 2;
 		float hy = (height / 22) + boxHeight * movingY + boxHeight / 2;
 		
+		surface.imageMode(PConstants.CENTER);
 		p.resize((int)size, (int)size);
     	surface.image(p, hx, hy);
 //		surface.ellipse(hx, hy, size, size);
