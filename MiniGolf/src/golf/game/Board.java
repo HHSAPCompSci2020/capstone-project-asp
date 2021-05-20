@@ -96,7 +96,7 @@ public class Board extends Screen {
 
 		surface.pushStyle();
 
-		surface.background(255, 255, 255);
+		surface.background(209, 214, 215);
 		surface.fill(255, 0, 0);
 		l.drawGrid(this, surface);
 	

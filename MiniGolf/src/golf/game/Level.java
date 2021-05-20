@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 /**
  * 
@@ -280,23 +281,25 @@ public class Level {
 	 */
 
 	public void drawGrid(Board b, PApplet p) {
-
+		
 		float width = b.DRAWING_WIDTH;
 		float height = b.DRAWING_HEIGHT;
 
 		float startx = width / 22;
 		float starty = height / 22;
+		float changey = ((3 * height / 4) - (height / 22)) / 20;
 
 		for (int i = 0; i < tiles.length; i++) {
 			for (int t = 0; t < tiles[0].length; t++) {
 				boolean l = false;
 				// ice tile
 				if (tiles[i][t] == '-') {
-					p.fill(240, 248, 255);
+					p.fill(203, 241, 250);
 				}
 				// wall
 				if (tiles[i][t] == '#') {
-					p.fill(222, 184, 135);
+					p.fill(73, 60, 43);
+					p.stroke(0);
 				}
 				// sandpit
 				if (tiles[i][t] == '*') {
@@ -306,43 +309,59 @@ public class Level {
 				// change dir up
 				if (tiles[i][t] == '^') {
 					l = true;
-					p.fill(173, 255, 47);
-
+					p.pushStyle();
+					p.fill(0, 180, 0);
+					p.textAlign(PConstants.CENTER);
 					p.rect((width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) * i + starty, width / 22,
 							(3 * height / 4 - height / 22) / 20);
-					p.text(tiles[i][t], (width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) + starty * i);
+					p.textSize(20);
+					p.fill(0);
+					p.text(tiles[i][t], (width / 22) + t * startx + (width / 22)/2, ((3 * height / 4 - height / 22) / 20) + changey * (i+1));
+					
+					p.popStyle();
 
 				}
 				// change dir right
 				if (tiles[i][t] == '>') {
 					l = true;
-
-					p.fill(173, 255, 47);
-
+					p.pushStyle();
+					p.fill(0, 180, 0);
+					p.textAlign(PConstants.CENTER);
 					p.rect((width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) * i + starty, width / 22,
 							(3 * height / 4 - height / 22) / 20);
-					p.text(tiles[i][t], (width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) + starty * i);
+					p.textSize(20);
+					p.fill(0);
+					p.text(tiles[i][t], (width / 22) + t * startx + (width / 22)/2, ((3 * height / 4 - height / 22) / 20) + changey * (i+1));
 
+					p.popStyle();
 				}
 				// change dir left
 				if (tiles[i][t] == '<') {
 					l = true;
-
-					p.fill(173, 255, 47);
+					p.pushStyle();
+					p.fill(0, 180, 0);
+					p.textAlign(PConstants.CENTER);
 					p.rect((width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) * i + starty, width / 22,
 							(3 * height / 4 - height / 22) / 20);
-					p.text(tiles[i][t], (width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) + starty * i);
+					p.textSize(20);
+					p.fill(0);
+					p.text(tiles[i][t], (width / 22) + t * startx + (width / 22)/2, ((3 * height / 4 - height / 22) / 20) + changey * (i+1));
 
+					p.popStyle();
 				}
 				// change dir down
 				if (tiles[i][t] == 'v') {
 					l = true;
-
-					p.fill(173, 255, 47);
+					p.pushStyle();
+					p.fill(0, 180, 0);
+					p.textAlign(PConstants.CENTER);
 					p.rect((width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) * i + starty, width / 22,
 							(3 * height / 4 - height / 22) / 20);
-					p.text(tiles[i][t], (width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) * i + starty);
+					p.textSize(20);
+					p.fill(0);
+					p.text(tiles[i][t], (width / 22) + t * startx + (width / 22)/2, ((3 * height / 4 - height / 22) / 20) + changey * (i+1));
 
+					p.popStyle();
 				}
 				// water
 				if (tiles[i][t] == '~') {
@@ -357,13 +376,14 @@ public class Level {
 				}
 				// uninitialized
 				if (tiles[i][t] == '\u0000') {
-					p.fill(255, 255, 255);
+					p.fill(209, 214, 215);
+					p.stroke(209, 214, 215);
 				}
 				if (tiles[i][t] == '.') {
-					p.fill(0, 255, 0);
+					p.fill(0, 180, 0);
 				}
 				if (tiles[i][t] == 'p') {
-					p.fill(0, 255, 0);
+					p.fill(0, 180, 0);
 				}
 				if (l == false) {
 					p.rect((width / 22) + t * startx, ((3 * height / 4 - height / 22) / 20) * i + starty, width / 22,

@@ -80,7 +80,11 @@ public class LevelSelect extends Screen {
 		Board b = new Board(surface);
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
 		for (int i = 0; i < 20; i++) {
-			if (levelButton.get(i).contains(p) && cleared[i]) {
+//			if (levelButton.get(i).contains(p) && cleared[i]) {
+//				thislevel = i + 1;
+//				switchScreen(ScreenSwitcher.SCREEN4);
+//			}
+			if (levelButton.get(i).contains(p)) {
 				thislevel = i + 1;
 				switchScreen(ScreenSwitcher.SCREEN4);
 			}
