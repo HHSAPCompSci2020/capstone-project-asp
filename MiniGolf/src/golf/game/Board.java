@@ -65,6 +65,7 @@ public class Board extends Screen {
 
 	private void instantiatePowerUps() {
 		if (l.p.size() > 0) {
+			powerUpMenu.clear();
 			float startx = DRAWING_WIDTH / 5;
 			float starty = DRAWING_HEIGHT * 9 / 10;
 
@@ -79,7 +80,8 @@ public class Board extends Screen {
 	}
 
 	private void instantiateCards() {
-
+		if (l.c.size() > 0) {
+		cardMenu.clear();
 		float startx = DRAWING_WIDTH / 22;
 		float starty = DRAWING_HEIGHT * 4 / 5;
 
@@ -88,6 +90,7 @@ public class Board extends Screen {
 		for (int i = 0; i < l.c.size(); i++) {
 
 			this.cardMenu.add(new Rectangle2D.Float(change * i + startx, starty, 50, 70));
+		}
 		}
 
 	}
@@ -153,6 +156,8 @@ public class Board extends Screen {
 				l.c.remove(cardSelected);
 				cardSelected = null;
 				powerupSelected = null;
+				this.instantiateCards();
+				this.instantiatePowerUps();
 			}
 			if (surface.isPressed(KeyEvent.VK_RIGHT)) {
 				powerupSelected.affect(cardSelected);
@@ -163,6 +168,8 @@ public class Board extends Screen {
 				cardSelected = null;
 
 				powerupSelected = null;
+				this.instantiateCards();
+				this.instantiatePowerUps();
 			}
 
 			if (surface.isPressed(KeyEvent.VK_UP)) {
@@ -172,6 +179,8 @@ public class Board extends Screen {
 				l.c.remove(cardSelected);
 				cardSelected = null;
 				powerupSelected = null;
+				this.instantiateCards();
+				this.instantiatePowerUps();
 
 			}
 			if (surface.isPressed(KeyEvent.VK_DOWN)) {
@@ -181,6 +190,8 @@ public class Board extends Screen {
 				l.p.remove(powerupSelected);
 				cardSelected = null;
 				powerupSelected = null;
+				this.instantiateCards();
+				this.instantiatePowerUps();
 			}
 
 		}
@@ -193,6 +204,7 @@ public class Board extends Screen {
 
 				l.c.remove(cardSelected);
 				cardSelected = null;
+				this.instantiateCards();
 
 			}
 			if (surface.isPressed(KeyEvent.VK_RIGHT)) {
@@ -201,7 +213,7 @@ public class Board extends Screen {
 				System.out.println("this");
 				l.c.remove(cardSelected);
 				cardSelected = null;
-
+				this.instantiateCards();
 			}
 
 			if (surface.isPressed(KeyEvent.VK_UP)) {
@@ -209,14 +221,14 @@ public class Board extends Screen {
 
 				l.c.remove(cardSelected);
 				cardSelected = null;
-
+				this.instantiateCards();
 			}
 			if (surface.isPressed(KeyEvent.VK_DOWN)) {
 
 				p.move(cardSelected, l, null, 2);
 				l.c.remove(cardSelected);
 				cardSelected = null;
-
+				this.instantiateCards();
 			}
 
 		}
