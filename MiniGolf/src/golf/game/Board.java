@@ -27,7 +27,7 @@ public class Board extends Screen {
 	private int level;
 	private ArrayList<Rectangle2D.Float> powerUpMenu = new ArrayList<Rectangle2D.Float>();
 	private PImage nextbutton;
-
+	private PImage backbutton;
 	private boolean[] cleared;
 
 	/**
@@ -48,6 +48,7 @@ public class Board extends Screen {
 				"Levels//Level" + thislevel + "//Level" + thislevel + "cards.txt",
 				"Levels//Level" + thislevel + "//Level" + thislevel + "powerups.txt");
 		surface = drawingSurface;
+		//surface.setup();
 		this.level = thislevel;
 		this.l = l;
 		next = new Rectangle(715, 715, 85, 85);
@@ -67,7 +68,7 @@ public class Board extends Screen {
 	}
 	public void setup() {
 	nextbutton = 	surface.loadImage("NextButton.png");
-		
+	backbutton = surface.loadImage("BackButton.png");
 	}
 
 	private void instantiatePowerUps() {
@@ -125,7 +126,8 @@ public class Board extends Screen {
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
 
 	//	surface.fill(0, 255, 0);
-		surface.image(nextbutton, 0, 0);
+		surface.image(nextbutton, 715, 715);
+		surface.image(backbutton, 0, 715);
 		surface.fill(255,255,255);
 		if (l.p.size() > 0) {
 			float startx = DRAWING_WIDTH / 5;
@@ -295,6 +297,7 @@ public class Board extends Screen {
 
 			surface.activeScreen = surface.screens.get(i);
 			surface.screens.remove(4);
+			surface.setup();
 
 		} else {
 			surface.activeScreen = surface.screens.get(i);

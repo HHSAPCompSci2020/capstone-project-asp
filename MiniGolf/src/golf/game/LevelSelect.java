@@ -103,6 +103,7 @@ public class LevelSelect extends Screen {
 			surface.screens.remove(3);
 			surface.screens.add(3, b);
 			surface.activeScreen = surface.screens.get(i);
+			surface.setup();
 
 		} else {
 			surface.activeScreen = surface.screens.get(i);
