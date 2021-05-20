@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import processing.core.PImage;
+
 /**
  * 
  * @author Pranav
@@ -24,6 +26,7 @@ public class Board extends Screen {
 	private Player p;
 	private int level;
 	private ArrayList<Rectangle2D.Float> powerUpMenu = new ArrayList<Rectangle2D.Float>();
+	private PImage nextbutton;
 
 	private boolean[] cleared;
 
@@ -61,6 +64,10 @@ public class Board extends Screen {
 		System.out.println(cardMenu.size());
 
 		System.out.println(cardMenu.get(0).getCenterX());
+	}
+	public void setup() {
+	nextbutton = 	surface.loadImage("NextButton.png");
+		
 	}
 
 	private void instantiatePowerUps() {
@@ -118,7 +125,7 @@ public class Board extends Screen {
 		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
 
 	//	surface.fill(0, 255, 0);
-		
+		surface.image(nextbutton, 0, 0);
 		surface.fill(255,255,255);
 		if (l.p.size() > 0) {
 			float startx = DRAWING_WIDTH / 5;
