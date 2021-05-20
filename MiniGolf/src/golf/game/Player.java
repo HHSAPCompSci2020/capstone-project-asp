@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  * 
@@ -218,7 +219,7 @@ public class Player {
 	/**
 	 * Draws the player on the parameter PApplet
 	 */
-	public boolean draw(PApplet surface, float width, float height, boolean moving) {
+	public boolean draw(PApplet surface, float width, float height, boolean moving, PImage p) {
 		moveTimer--;
 		surface.pushStyle();
 		surface.fill(color);
@@ -234,7 +235,9 @@ public class Player {
 		
 		
 	    if (next.size() == 0) {
-	    	surface.ellipse((boxWidth) * (x + 1) + boxWidth / 2, (height / 22) + boxHeight * y + boxHeight / 2, size, size);
+	    	p.resize((int)size, (int)size);
+	    	surface.image(p, (boxWidth) * (x + 1) + boxWidth / 2, (boxWidth) * (x + 1) + boxWidth / 2);
+//	    	surface.ellipse((boxWidth) * (x + 1) + boxWidth / 2, (boxWidth) * (x + 1) + boxWidth / 2, size, size);
 	    	surface.popStyle();
 	    	return false;
 	    }
@@ -287,7 +290,10 @@ public class Player {
 	    
 	    float hx = (boxWidth) * (movingX + 1) + boxWidth / 2;
 		float hy = (height / 22) + boxHeight * movingY + boxHeight / 2;
-		surface.ellipse(hx, hy, size, size);
+		
+		p.resize((int)size, (int)size);
+    	surface.image(p, hx, hy);
+//		surface.ellipse(hx, hy, size, size);
 
 		surface.popStyle();
 		return true;
@@ -318,6 +324,11 @@ public class Player {
 	 */
 	public static void changeColor(int c) {
 		color = c;
+	}
+	
+	
+	public int getColor() {
+		return color;
 	}
 	
 }
