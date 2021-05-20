@@ -7,13 +7,28 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import processing.core.PImage;
+
 public class Settings extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle back;
 	private Rectangle credits;
 	private ArrayList<Rectangle> colors = new ArrayList<Rectangle>();
+	private ArrayList<PImage> c = new ArrayList<PImage>();
 
+	
+	
+	public void setup() {
+		c.add(surface.loadImage("Assets//ballBLACK.png"));
+		c.add(surface.loadImage("Assets//ballBLUE.png"));
+		c.add(surface.loadImage("Assets//ballGREEN.png"));
+		c.add(surface.loadImage("Assets//ballRED.png"));
+		c.add(surface.loadImage("Assets//ballSWAG.png"));
+		c.add(surface.loadImage("Assets//ballWHITE.png"));
+		c.add(surface.loadImage("Assets//ballYELLOW.png"));
+	}
+	
 	/*
 	 * Creates new settings
 	 * 
@@ -49,6 +64,8 @@ public class Settings extends Screen {
 		surface.rect(credits.x, credits.y, credits.width, credits.height, 10, 10, 10, 10);
 		for (int i = 0; i < 7; i++) {
 			surface.rect((float)colors.get(i).getX(), (float)colors.get(i).getY(), (float)colors.get(i).getWidth(), (float)colors.get(i).getHeight());
+			c.get(i).resize((int)colors.get(i).getWidth(), (int)colors.get(i).getHeight());
+			surface.image(c.get(i), (float)colors.get(i).getX(), (float)colors.get(i).getY());
 		}
 		surface.fill(0);
 		str = "credits";
