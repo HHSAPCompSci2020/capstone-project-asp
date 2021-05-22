@@ -30,6 +30,7 @@ public class Board extends Screen {
 	private PImage backbutton;
 	private boolean[] cleared;
 	private ArrayList<PImage> cards = new ArrayList<PImage>();
+	private ArrayList<PImage> powerups = new ArrayList<PImage>();
 	private ArrayList<PImage> playerImages = new ArrayList<PImage>();
 	private int cardSelectedIndex;
 	private Music m = new Music();
@@ -75,6 +76,11 @@ public class Board extends Screen {
 	backbutton = surface.loadImage("BackButton.png");
 	for(int i = 0; i<l.c.size(); i++) {
 		cards.add(surface.loadImage("Assets//M"+l.c.get(i).getMagnitude()+"J"+l.c.get(i).getJMagnitude()+".png"));
+	}
+	
+	for(int i = 0; i< l.p.size(); i++) {
+		powerups.add(surface.loadImage("Assets//powerupm"+l.p.get(i).getMagnitude()+"j"+l.p.get(i).getJMagnitude()+".png"));
+		
 	}
 	playerImages.add(surface.loadImage("Assets//ballBLACK.png"));
 	playerImages.add(surface.loadImage("Assets//ballBLUE.png"));
@@ -144,22 +150,7 @@ public class Board extends Screen {
 		surface.image(nextbutton, 715, 715);
 		surface.image(backbutton, 0, 715);
 		surface.fill(255,255,255);
-		if (l.p.size() > 0) {
-			float startx = DRAWING_WIDTH / 5;
-			float starty = DRAWING_HEIGHT * 9 / 10;
-
-			float change = (DRAWING_WIDTH - DRAWING_WIDTH / 5) / l.p.size();
-
-			for (int i = 0; i < l.p.size(); i++) {
-				if (l.p.get(i).equals(powerupSelected)) {
-					surface.fill(0, 255, 0);
-				} else {
-					surface.fill(255, 255, 255);
-				}
-				surface.rect(change * i + startx, starty, 30, 30);
-				surface.fill(255, 255, 255);
-			}
-		}
+		
 		if(l.c.size()>0) {
 
 			float startx = DRAWING_WIDTH / 22;
@@ -168,21 +159,48 @@ public class Board extends Screen {
 			float change = (DRAWING_WIDTH - DRAWING_WIDTH / 22) / l.c.size();
 
 			for (int i = 0; i < l.c.size(); i++) {
+				surface.noFill();
 				if (l.c.get(i).equals(cardSelected)) {
 					surface.fill(0, 255, 0);
-				} else {
-					surface.noFill();
-				}
+				} 
 				surface.rect(change * i + startx-5, starty-5, 60, 80);
-				surface.noFill();
+				
 				cards.get(i).resize(49, 69);
 				surface.image(cards.get(i), change * i + startx, starty);
 				
 			}
 		}
 		l.drawPowerUps(this, surface);
+		if(l.p.size()>0) {
+			
+			
+			float startx = DRAWING_WIDTH / 5;
+			float starty = DRAWING_HEIGHT * 9 / 10;
+
+			float change = (this.DRAWING_WIDTH - this.DRAWING_WIDTH / 5) / l.p.size();
+
+			for (int i = 0; i < l.p.size(); i++) {
+				
+				surface.noFill();
+				if (l.p.get(i).equals(powerupSelected)) {
+					surface.fill(0, 255, 0);
+				} 
+				surface.rect(change * i + startx-5, starty-5, 40, 40);
+				
+				powerups.get(i).resize( 30, 30);
+				surface.image(powerups.get(i), change*i+startx,starty);
+				
+				
+			}
+			
+			
+			
+			
+			
+		}
 		
 		if (cardSelected != null && !isMoving) {
+			
 
 			if (surface.isPressed(KeyEvent.VK_LEFT)) {
 				p.move(cardSelected, l, powerupSelected, 4);
