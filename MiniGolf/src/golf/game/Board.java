@@ -2,6 +2,7 @@ package golf.game;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -63,7 +64,6 @@ public class Board extends Screen {
 
 		isMoving = false;
 
-		m.actionPerformed(null);
 		instantiateCards();
 		instantiatePowerUps();
 		this.cleared = cleared;
@@ -170,7 +170,7 @@ public class Board extends Screen {
 				
 			}
 		}
-		l.drawPowerUps(this, surface);
+		//l.drawPowerUps(this, surface);
 		if(l.p.size()>0) {
 			
 			
@@ -299,12 +299,10 @@ public class Board extends Screen {
 	 * goes to the next level
 	 */
 	public void switchScreen(int i) {
-		m.musicStopped();
 		if (i == 3) {
-
+			m.actionPerformed(new ActionEvent(null, 1, "level"));
 			Board b = new Board(surface, level + 1, cleared);
 			surface.screens.add(3, b);
-
 			surface.activeScreen = surface.screens.get(i);
 			surface.setup();
 			surface.screens.remove(4);	
