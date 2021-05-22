@@ -36,7 +36,6 @@ public class Music extends JPanel implements ActionListener, JayLayerListener {
 	@Override
 	public void songEnded() {
 		sound.stopSong();
-
 	}
 
 	@Override
