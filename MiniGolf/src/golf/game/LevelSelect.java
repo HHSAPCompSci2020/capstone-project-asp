@@ -17,13 +17,15 @@ public class LevelSelect extends Screen {
 	private DrawingSurface surface;
 	private ArrayList<Rectangle> levelButton = new ArrayList<Rectangle>();
 	private Rectangle back;
-	private PImage b;
+	private PImage b, unlock, lock;
 	private int thislevel;
 	private boolean cleared[] = new boolean[20];
 
 	
 	public void setup() {
 		b = surface.loadImage("Assets//backbutton.png");
+		unlock = surface.loadImage("Assets//unlockedlevel.png");
+		lock = surface.loadImage("Assets//lockedlevel.png");
 	}
 	
 	/*
@@ -48,8 +50,8 @@ public class LevelSelect extends Screen {
 		surface.pushStyle();
 
 		surface.background(255, 255, 255);
+		surface.textSize(25);
 		String str;
-		float w;
 		int j = 0;
 		int row = 0;
 		for (int i = 0; i < 20; i++) {
@@ -57,17 +59,20 @@ public class LevelSelect extends Screen {
 				j = 0;
 				row++;
 			}
-			surface.fill(0);
+			
 			levelButton.add(new Rectangle(100 + 150 * j, 50+120*row, 150, 100));
 			if (cleared[i]) {
+				surface.image(unlock, levelButton.get(i).x, levelButton.get(i).y);
+				surface.fill(0);
+				str = "Level " + (i + 1);
+				surface.text(str, levelButton.get(i).x + levelButton.get(i).width / 2 - surface.textWidth(str) / 2,
+						levelButton.get(i).y + levelButton.get(i).height / 2 + 5);
 				surface.noFill();
+			} else {
+				surface.image(lock, levelButton.get(i).x, levelButton.get(i).y);
 			}
 			surface.rect(levelButton.get(i).x, levelButton.get(i).y, levelButton.get(i).width,
 					levelButton.get(i).height, 10, 10, 10, 10);
-			surface.fill(0);
-			str = "level " + (i + 1);
-			surface.text(str, levelButton.get(i).x + levelButton.get(i).width / 2 - surface.textWidth(str) / 2,
-					levelButton.get(i).y + levelButton.get(i).height / 2);
 			j++;
 		}
 

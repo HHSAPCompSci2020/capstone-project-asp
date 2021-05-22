@@ -170,7 +170,6 @@ public class Board extends Screen {
 				
 			}
 		}
-		//l.drawPowerUps(this, surface);
 		if(l.p.size()>0) {
 			
 			
