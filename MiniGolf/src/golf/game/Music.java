@@ -30,7 +30,7 @@ public class Music extends JPanel implements ActionListener, JayLayerListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-//		//String command = arg0.getActionCommand();
+		//String command = arg0.getActionCommand();
 //		if(command == "level")
 //		{
 //			sound.playSoundEffect(0);
