@@ -32,6 +32,8 @@ public class Board extends Screen {
 	private ArrayList<PImage> cards = new ArrayList<PImage>();
 	private ArrayList<PImage> playerImages = new ArrayList<PImage>();
 	private int cardSelectedIndex;
+	private Music m = new Music();
+
 
 	/**
 	 * Creates a new Board Screen
@@ -60,7 +62,6 @@ public class Board extends Screen {
 
 		isMoving = false;
 
-		Music m = new Music();
 		m.actionPerformed(null);
 		instantiateCards();
 		instantiatePowerUps();
@@ -280,6 +281,7 @@ public class Board extends Screen {
 	 * goes to the next level
 	 */
 	public void switchScreen(int i) {
+		m.musicStopped();
 		if (i == 3) {
 
 			Board b = new Board(surface, level + 1, cleared);

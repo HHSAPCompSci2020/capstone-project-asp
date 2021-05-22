@@ -381,7 +381,7 @@ public class Level {
 		for (int i = 0; i < tiles.length; i++) {
 			for (int p = 0; p < tiles[0].length; p++) {
 				if (tiles[i][p] == 'p') {
-					return new Player(i, p);
+					return new Player(p, i);
 				}
 			}
 		}
