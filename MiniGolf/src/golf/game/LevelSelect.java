@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import processing.core.PImage;
+
 /**
  * 
  * @author Ansel
@@ -15,9 +17,15 @@ public class LevelSelect extends Screen {
 	private DrawingSurface surface;
 	private ArrayList<Rectangle> levelButton = new ArrayList<Rectangle>();
 	private Rectangle back;
+	private PImage b;
 	private int thislevel;
 	private boolean cleared[] = new boolean[20];
 
+	
+	public void setup() {
+		b = surface.loadImage("Assets//backbutton.png");
+	}
+	
 	/*
 	 * Creates a new levelSelect
 	 * 
@@ -63,13 +71,9 @@ public class LevelSelect extends Screen {
 			j++;
 		}
 
-		surface.noFill();
-		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
-		surface.fill(0);
-		str = "Back";
-		w = surface.textWidth(str);
-		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
-
+		b.resize(b.width, b.height);
+		surface.image(b, back.x, back.y);
+		
 		surface.popStyle();
 	}
 
