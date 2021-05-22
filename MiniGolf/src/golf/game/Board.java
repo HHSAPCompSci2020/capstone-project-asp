@@ -299,7 +299,7 @@ public class Board extends Screen {
 	 */
 	public void switchScreen(int i) {
 		if (i == 3) {
-			//m.actionPerformed(new ActionEvent(null, 1, "level"));
+			m.actionPerformed(new ActionEvent(null, 1, "level"));
 			Board b = new Board(surface, level + 1, cleared);
 			surface.screens.add(3, b);
 			surface.activeScreen = surface.screens.get(i);
