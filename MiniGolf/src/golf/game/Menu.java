@@ -15,9 +15,9 @@ public class Menu extends Screen {
 	private DrawingSurface surface;
 	private Rectangle settings;
 	private Rectangle levelSelect;
-	private Music m = new Music();
 	private PImage lSelect, set;
 	private PImage background;
+	private Music m = new Music();
 	
 	public void setup() {
 		lSelect = surface.loadImage("Assets//levelselect.png");
@@ -40,9 +40,8 @@ public class Menu extends Screen {
 
 		settings = new Rectangle(300, 500, 200, 100);
 		levelSelect = new Rectangle(300, 200, 200, 100);
-		
 		m.actionPerformed(null);
-	}
+			}
 
 	/*
 	 * draw the menu
@@ -69,10 +68,11 @@ public class Menu extends Screen {
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
 		if (settings.contains(p)) {
-			surface.switchScreen(ScreenSwitcher.SCREEN2);
 			m.songEnded();
+			surface.switchScreen(ScreenSwitcher.SCREEN2);
 		}
 		if (levelSelect.contains(p))
+			m.songEnded();
 			surface.switchScreen(ScreenSwitcher.SCREEN3);
 	}
 

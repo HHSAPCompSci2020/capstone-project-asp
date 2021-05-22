@@ -14,7 +14,7 @@ public class Music extends JPanel implements ActionListener, JayLayerListener {
 	public Music() {
 		// super();
 
-		String[] soundEffects = new String[] {"coconutmall.mp3", "fizzdintimate.mp3" };
+		String[] soundEffects = new String[] {"coconutmall.mp3", "fizzdintimate.mp3","thepast.mp3"};
 		String[] songs = new String[] { "QuirkyWorky.mp3", "coconutmall.mp3", "fizzdintimate.mp3"};
 
 		sound = new JayLayer("Assets/", "Assets/", false);
@@ -30,11 +30,7 @@ public class Music extends JPanel implements ActionListener, JayLayerListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		//String command = arg0.getActionCommand();
-//		if(command == "level")
-//		{
-//			sound.playSoundEffect(0);
-//		}
+		sound.nextSong();
 	}
 
 	@Override
@@ -44,18 +40,18 @@ public class Music extends JPanel implements ActionListener, JayLayerListener {
 
 	@Override
 	public void playlistEnded() {
-		// TODO Auto-generated method stub
-
+		sound.playSoundEffect(1);
 	}
 
 	@Override
 	public void musicStarted() {
-
+		sound.playSoundEffect(2);
 	}
 
 	@Override
 	public void musicStopped() {
-
+		sound.playSoundEffect(0);
 	}
 
 }
+

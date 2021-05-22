@@ -34,7 +34,6 @@ public class Board extends Screen {
 	private ArrayList<PImage> powerups = new ArrayList<PImage>();
 	private ArrayList<PImage> playerImages = new ArrayList<PImage>();
 	private int cardSelectedIndex;
-	private Music m = new Music();
 	private PImage background;
 
 
