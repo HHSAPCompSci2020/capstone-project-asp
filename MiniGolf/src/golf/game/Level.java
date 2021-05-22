@@ -334,8 +334,8 @@ public class Level {
 				}
 				// uninitialized
 				if (tiles[i][t] == '\u0000') {
-					p.fill(209, 214, 215);
-					p.stroke(209, 214, 215);
+					p.noFill();
+					p.noStroke();
 				}
 				if (tiles[i][t] == '.') {
 					p.fill(0, 180, 0);

@@ -17,10 +17,15 @@ public class Menu extends Screen {
 	private Rectangle levelSelect;
 	private Music m = new Music();
 	private PImage lSelect, set;
+	private PImage background;
 	
 	public void setup() {
 		lSelect = surface.loadImage("Assets//levelselect.png");
 		set = surface.loadImage("Assets//settings.png");
+		background = surface.loadImage("Assets//Background.png");
+		background.resize(this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
+		
+		
 	}
 	
 	
@@ -35,18 +40,20 @@ public class Menu extends Screen {
 
 		settings = new Rectangle(300, 500, 200, 100);
 		levelSelect = new Rectangle(300, 200, 200, 100);
-
+		
 		m.actionPerformed(null);
 	}
 
 	/*
 	 * draw the menu
 	 */
+	
 	public void draw() {
 
 		surface.pushStyle();
-
-		surface.background(255, 255, 255);
+		
+		surface.background(255,255,255);
+		surface.image(background, 0, 0);
 
 		set.resize(settings.width, settings.height);
 		lSelect.resize(levelSelect.width, levelSelect.height);
