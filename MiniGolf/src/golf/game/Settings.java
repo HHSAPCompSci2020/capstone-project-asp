@@ -13,7 +13,7 @@ public class Settings extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle back;
-	private PImage b;
+	private PImage b, cbutton;
 	private Rectangle credits;
 	private ArrayList<Rectangle> colors = new ArrayList<Rectangle>();
 	private ArrayList<PImage> c = new ArrayList<PImage>();
@@ -29,6 +29,7 @@ public class Settings extends Screen {
 		c.add(surface.loadImage("Assets//ballWHITE.png"));
 		c.add(surface.loadImage("Assets//ballYELLOW.png"));
 		b = surface.loadImage("Assets//backbutton.png");
+		cbutton = surface.loadImage("Assets//creditsbutton.png");
 	}
 	
 	/*
@@ -56,20 +57,19 @@ public class Settings extends Screen {
 
 		surface.background(255, 255, 255);
 
-		b.resize(back.width, back.height);
 		surface.image(b, back.x, back.y);
 
 		surface.noFill();
-		surface.rect(credits.x, credits.y, credits.width, credits.height, 10, 10, 10, 10);
+
 		for (int i = 0; i < 7; i++) {
 			surface.rect((float)colors.get(i).getX(), (float)colors.get(i).getY(), (float)colors.get(i).getWidth(), (float)colors.get(i).getHeight());
 			c.get(i).resize((int)colors.get(i).getWidth(), (int)colors.get(i).getHeight());
 			surface.image(c.get(i), (float)colors.get(i).getX(), (float)colors.get(i).getY());
 		}
-		surface.fill(0);
-		String str = "credits";
-		float w = surface.textWidth(str);
-		surface.text(str, credits.x + credits.width / 2 - w / 2, credits.y + credits.height / 2);
+		
+		cbutton.resize(credits.width, credits.height);
+		surface.image(cbutton, credits.x, credits.y);
+
 
 		surface.popStyle();
 	}
