@@ -278,9 +278,7 @@ public class Board extends Screen {
 
 			surface.activeScreen = surface.screens.get(i);
 			surface.setup();
-			surface.screens.remove(4);
-			
-
+			surface.screens.remove(4);	
 		} else {
 			surface.activeScreen = surface.screens.get(i);
 		}
