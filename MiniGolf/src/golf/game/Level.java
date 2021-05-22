@@ -352,8 +352,7 @@ public class Level {
 				}
 				// hole
 				if (tiles[i][t] == 'X') {
-
-					p.noFill();
+					p.fill(255);
 
 				}
 				// uninitialized

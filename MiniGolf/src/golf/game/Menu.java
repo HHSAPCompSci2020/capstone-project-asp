@@ -3,6 +3,8 @@ package golf.game;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import processing.core.PImage;
+
 /**
  * 
  * @author Savio
@@ -14,7 +16,14 @@ public class Menu extends Screen {
 	private Rectangle settings;
 	private Rectangle levelSelect;
 	private Music m = new Music();
-
+	private PImage lSelect, set;
+	
+	public void setup() {
+		lSelect = surface.loadImage("Assets//levelselect.png");
+		set = surface.loadImage("Assets//settings.png");
+	}
+	
+	
 	/*
 	 * creates a new menu
 	 * 
@@ -39,18 +48,10 @@ public class Menu extends Screen {
 
 		surface.background(255, 255, 255);
 
-		surface.rect(settings.x, settings.y, settings.width, settings.height, 10, 10, 10, 10);
-		surface.fill(0);
-		String str = "Settings";
-		float w = surface.textWidth(str);
-		surface.text(str, settings.x + settings.width / 2 - w / 2, settings.y + settings.height / 2);
-
-		surface.noFill();
-		surface.rect(levelSelect.x, levelSelect.y, levelSelect.width, levelSelect.height, 10, 10, 10, 10);
-		surface.fill(0);
-		str = "levelSelect";
-		w = surface.textWidth(str);
-		surface.text(str, levelSelect.x + levelSelect.width / 2 - w / 2, levelSelect.y + levelSelect.height / 2);
+		set.resize(settings.width, settings.height);
+		lSelect.resize(levelSelect.width, levelSelect.height);
+		surface.image(set, settings.x, settings.y);
+		surface.image(lSelect, levelSelect.x, levelSelect.y);
 
 		surface.popStyle();
 	}
