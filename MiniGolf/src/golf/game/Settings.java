@@ -13,6 +13,7 @@ public class Settings extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle back;
+	private PImage b;
 	private Rectangle credits;
 	private ArrayList<Rectangle> colors = new ArrayList<Rectangle>();
 	private ArrayList<PImage> c = new ArrayList<PImage>();
@@ -27,6 +28,7 @@ public class Settings extends Screen {
 		c.add(surface.loadImage("Assets//ballSWAG.png"));
 		c.add(surface.loadImage("Assets//ballWHITE.png"));
 		c.add(surface.loadImage("Assets//ballYELLOW.png"));
+		b = surface.loadImage("Assets//backbutton.png");
 	}
 	
 	/*
@@ -54,11 +56,8 @@ public class Settings extends Screen {
 
 		surface.background(255, 255, 255);
 
-		surface.rect(back.x, back.y, back.width, back.height, 10, 10, 10, 10);
-		surface.fill(0);
-		String str = "Back";
-		float w = surface.textWidth(str);
-		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
+		b.resize(back.width, back.height);
+		surface.image(b, back.x, back.y);
 
 		surface.noFill();
 		surface.rect(credits.x, credits.y, credits.width, credits.height, 10, 10, 10, 10);
@@ -68,8 +67,8 @@ public class Settings extends Screen {
 			surface.image(c.get(i), (float)colors.get(i).getX(), (float)colors.get(i).getY());
 		}
 		surface.fill(0);
-		str = "credits";
-		w = surface.textWidth(str);
+		String str = "credits";
+		float w = surface.textWidth(str);
 		surface.text(str, credits.x + credits.width / 2 - w / 2, credits.y + credits.height / 2);
 
 		surface.popStyle();
