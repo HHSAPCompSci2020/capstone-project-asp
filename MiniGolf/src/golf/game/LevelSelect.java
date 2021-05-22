@@ -20,12 +20,15 @@ public class LevelSelect extends Screen {
 	private PImage b, unlock, lock;
 	private int thislevel;
 	private boolean cleared[] = new boolean[20];
+	private PImage background;
 
 	
 	public void setup() {
 		b = surface.loadImage("Assets//backbutton.png");
 		unlock = surface.loadImage("Assets//unlockedlevel.png");
 		lock = surface.loadImage("Assets//lockedlevel.png");
+		background = surface.loadImage("Assets//LevelSelectBackground.png");;
+		background.resize(800, 800);
 	}
 	
 	/*
@@ -49,7 +52,8 @@ public class LevelSelect extends Screen {
 
 		surface.pushStyle();
 
-		surface.background(255, 255, 255);
+		
+		surface.image(background, 0, 0);
 		surface.textSize(25);
 		String str;
 		int j = 0;
