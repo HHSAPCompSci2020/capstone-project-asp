@@ -72,8 +72,8 @@ public class Board extends Screen {
 		System.out.println(cardMenu.get(0).getCenterX());
 	}
 	public void setup() {
-	nextbutton = 	surface.loadImage("NextButton.png");
-	backbutton = surface.loadImage("BackButton.png");
+	nextbutton = 	surface.loadImage("Assets//nextbutton.png");
+	backbutton = surface.loadImage("Assets//backbutton.png");
 	for(int i = 0; i<l.c.size(); i++) {
 		cards.add(surface.loadImage("Assets//M"+l.c.get(i).getMagnitude()+"J"+l.c.get(i).getJMagnitude()+".png"));
 	}
