@@ -34,6 +34,8 @@ public class Board extends Screen {
 	private ArrayList<PImage> powerups = new ArrayList<PImage>();
 	private ArrayList<PImage> playerImages = new ArrayList<PImage>();
 	private int cardSelectedIndex;
+	private int powerupIndex;
+	private Music m = new Music();
 	private PImage background;
 
 
@@ -209,6 +211,8 @@ public class Board extends Screen {
 				l.p.remove(powerupSelected);
 				l.c.remove(cardSelected);
 				cards.remove(cardSelectedIndex);
+				if (powerupSelected != null)
+				powerups.remove(powerupIndex);
 				cardSelected = null;
 				powerupSelected = null;
 				this.instantiateCards();
@@ -220,6 +224,8 @@ public class Board extends Screen {
 				System.out.println("this");
 				l.c.remove(cardSelected);
 				cards.remove(cardSelectedIndex);
+				if (powerupSelected != null)
+					powerups.remove(powerupIndex);
 				cardSelected = null;
 
 				powerupSelected = null;
@@ -232,6 +238,8 @@ public class Board extends Screen {
 				l.p.remove(powerupSelected);
 				l.c.remove(cardSelected);
 				cards.remove(cardSelectedIndex);
+				if (powerupSelected != null)
+					powerups.remove(powerupIndex);
 				cardSelected = null;
 				powerupSelected = null;
 				this.instantiateCards();
@@ -243,6 +251,8 @@ public class Board extends Screen {
 				l.c.remove(cardSelected);
 				l.p.remove(powerupSelected);
 				cards.remove(cardSelectedIndex);
+				if (powerupSelected != null)
+					powerups.remove(powerupIndex);
 				cardSelected = null;
 				powerupSelected = null;
 				this.instantiateCards();
@@ -293,6 +303,7 @@ public class Board extends Screen {
 
 			if (powerUpMenu.get(i).contains(p)) {
 				powerupSelected = l.p.get(i);
+				powerupIndex = i;
 				System.out.println("powerup selected");
 
 			}
