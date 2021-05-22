@@ -150,9 +150,13 @@ public class Board extends Screen {
 			float change = (DRAWING_WIDTH - DRAWING_WIDTH / 5) / l.p.size();
 
 			for (int i = 0; i < l.p.size(); i++) {
-
+				if (l.p.get(i).equals(powerupSelected)) {
+					surface.fill(0, 255, 0);
+				} else {
+					surface.fill(255, 255, 255);
+				}
 				surface.rect(change * i + startx, starty, 30, 30);
-			
+				surface.fill(255, 255, 255);
 			}
 		}
 		if(l.c.size()>0) {
@@ -163,8 +167,13 @@ public class Board extends Screen {
 			float change = (DRAWING_WIDTH - DRAWING_WIDTH / 22) / l.c.size();
 
 			for (int i = 0; i < l.c.size(); i++) {
-				
-				surface.rect(change * i + startx, starty, 50, 70);
+				if (l.c.get(i).equals(cardSelected)) {
+					surface.fill(0, 255, 0);
+				} else {
+					surface.noFill();
+				}
+				surface.rect(change * i + startx-5, starty-5, 60, 80);
+				surface.noFill();
 				cards.get(i).resize(49, 69);
 				surface.image(cards.get(i), change * i + startx, starty);
 				
