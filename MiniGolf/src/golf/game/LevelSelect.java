@@ -52,7 +52,7 @@ public class LevelSelect extends Screen {
 
 		surface.pushStyle();
 
-		surface.background(255, 255, 255);
+		
 		surface.image(background, 0, 0);
 		surface.textSize(25);
 		String str;

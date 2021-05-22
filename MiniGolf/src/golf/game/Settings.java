@@ -55,7 +55,7 @@ public class Settings extends Screen {
 
 		surface.pushStyle();
 
-		surface.background(255, 255, 255);
+		surface.background(135, 206, 235);
 
 		surface.image(b, back.x, back.y);
 

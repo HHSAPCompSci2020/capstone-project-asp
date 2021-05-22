@@ -256,9 +256,13 @@ public class Board extends Screen {
 
 			cleared[level] = true;
 		}
-		if (!p.isCleared() && cardMenu.size() == 0) {
+		if (!p.isCleared() && l.c.size() == 0) {
 			l.reset();
 			this.instantiateCards();
+			this.instantiatePowerUps();
+			p.reset();
+			surface.setup();
+			
 		}
 		surface.popStyle();
 
