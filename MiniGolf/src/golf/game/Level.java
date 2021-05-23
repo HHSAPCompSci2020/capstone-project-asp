@@ -136,24 +136,24 @@ public class Level {
 					String line = in.nextLine();
 					for (int i = 0; i < line.length(); i++) {
 						if (line.charAt(i) == '1') {
-							cards.add(new Card(1, false, 0));
+							cards.add(new Card(1, 0));
 						}
 
 						if (line.charAt(i) == '2') {
-							cards.add(new Card(2, false, 0));
+							cards.add(new Card(2, 0));
 						}
 						if (line.charAt(i) == '3') {
-							cards.add(new Card(3, false, 0));
+							cards.add(new Card(3, 0));
 						}
 
 						if (line.charAt(i) == 'A') {
-							cards.add(new Card(0, true, 2));
+							cards.add(new Card(0, 2));
 						}
 						if (line.charAt(i) == 'B') {
-							cards.add(new Card(1, true, 2));
+							cards.add(new Card(1, 2));
 						}
 						if (line.charAt(i) == 'C') {
-							cards.add(new Card(2, true, 2));
+							cards.add(new Card(2, 2));
 						}
 
 					}
@@ -198,20 +198,20 @@ public class Level {
 					for (int i = 0; i < line.length(); i++) {
 
 						if (line.charAt(i) == 'A') {
-							powerups.add(new PowerUp(1, 0, false));
+							powerups.add(new PowerUp(1, 0));
 
 						}
 						if (line.charAt(i) == 'B') {
-							powerups.add(new PowerUp(2, 0, false));
+							powerups.add(new PowerUp(2, 0));
 
 						}
 						if (line.charAt(i) == 'C') {
-							powerups.add(new PowerUp(0, 1, true));
+							powerups.add(new PowerUp(0, 1));
 
 						}
 
 						if (line.charAt(i) == 'D') {
-							powerups.add(new PowerUp(0, 2, true));
+							powerups.add(new PowerUp(0, 2));
 
 						}
 

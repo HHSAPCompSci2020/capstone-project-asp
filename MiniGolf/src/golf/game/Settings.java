@@ -63,11 +63,9 @@ public class Settings extends Screen {
 
 		for (int i = 0; i < 7; i++) {
 			surface.rect((float)colors.get(i).getX(), (float)colors.get(i).getY(), (float)colors.get(i).getWidth(), (float)colors.get(i).getHeight());
-			c.get(i).resize((int)colors.get(i).getWidth(), (int)colors.get(i).getHeight());
 			surface.image(c.get(i), (float)colors.get(i).getX(), (float)colors.get(i).getY());
 		}
 		
-		cbutton.resize(credits.width, credits.height);
 		surface.image(cbutton, credits.x, credits.y);
 
 
