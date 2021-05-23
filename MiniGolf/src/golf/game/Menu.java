@@ -40,7 +40,7 @@ public class Menu extends Screen {
 
 		settings = new Rectangle(300, 500, 200, 100);
 		levelSelect = new Rectangle(300, 200, 200, 100);
-		m.actionPerformed(null);
+		m.musicStopped();
 			}
 
 	/*

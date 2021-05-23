@@ -15,7 +15,7 @@ public class Music extends JPanel implements ActionListener, JayLayerListener {
 		// super();
 
 		String[] soundEffects = new String[] {"coconutmall.mp3", "fizzdintimate.mp3","thepast.mp3"};
-		String[] songs = new String[] { "QuirkyWorky.mp3", "coconutmall.mp3", "fizzdintimate.mp3"};
+		String[] songs = new String[] {};
 
 		sound = new JayLayer("Assets/", "Assets/", false);
 		sound.addPlayList();
