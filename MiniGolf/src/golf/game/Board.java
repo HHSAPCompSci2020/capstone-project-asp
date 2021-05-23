@@ -35,8 +35,6 @@ public class Board extends Screen {
 	private ArrayList<PImage> playerImages = new ArrayList<PImage>();
 	private int cardSelectedIndex;
 	private int powerupIndex;
-	private Music m = new Music();
-	private PImage background;
 
 
 	/**
@@ -74,8 +72,6 @@ public class Board extends Screen {
 		System.out.println(cardMenu.get(0).getCenterX());
 	}
 	public void setup() {
-		background = surface.loadImage("Assets//BoardBackground.png");
-		background.resize(800, 800);
 	nextbutton = 	surface.loadImage("Assets//nextbutton.png");
 	backbutton = surface.loadImage("Assets//backbutton.png");
 	for(int i = 0; i<l.c.size(); i++) {
@@ -133,7 +129,6 @@ public class Board extends Screen {
 		surface.pushStyle();
 
 		surface.background(209, 214, 215);
-		surface.image(background, 0, 0);
 		surface.fill(255, 0, 0);
 		l.drawGrid(this, surface);
 	
