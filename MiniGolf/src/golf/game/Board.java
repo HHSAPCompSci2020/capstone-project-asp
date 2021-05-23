@@ -206,7 +206,7 @@ public class Board extends Screen {
 		if (cardSelected != null && !isMoving) {
 			
 
-			if (surface.isPressed(KeyEvent.VK_LEFT)) {
+			if (surface.isPressed(KeyEvent.VK_A)) {
 				p.move(cardSelected, l, powerupSelected, 4);
 				l.p.remove(powerupSelected);
 				l.c.remove(cardSelected);
@@ -218,7 +218,7 @@ public class Board extends Screen {
 				this.instantiateCards();
 				this.instantiatePowerUps();
 			}
-			if (surface.isPressed(KeyEvent.VK_RIGHT)) {
+			if (surface.isPressed(KeyEvent.VK_D)) {
 				p.move(cardSelected, l, powerupSelected, 3);
 				l.p.remove(powerupSelected);
 				System.out.println("this");
@@ -233,7 +233,7 @@ public class Board extends Screen {
 				this.instantiatePowerUps();
 			}
 
-			if (surface.isPressed(KeyEvent.VK_UP)) {
+			if (surface.isPressed(KeyEvent.VK_W)) {
 				p.move(cardSelected, l, powerupSelected, 1);
 				l.p.remove(powerupSelected);
 				l.c.remove(cardSelected);
@@ -246,7 +246,7 @@ public class Board extends Screen {
 				this.instantiatePowerUps();
 
 			}
-			if (surface.isPressed(KeyEvent.VK_DOWN)) {
+			if (surface.isPressed(KeyEvent.VK_S)) {
 				p.move(cardSelected, l, powerupSelected, 2);
 				l.c.remove(cardSelected);
 				l.p.remove(powerupSelected);

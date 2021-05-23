@@ -8,7 +8,6 @@ package golf.game;
 public class Card {
 
 	private int magnitude;
-	private boolean doesJump;
 	private int magnitudeJump;
 
 	/***
@@ -19,9 +18,8 @@ public class Card {
 	 * @param true      if the card lets you jump, false if it is just a normal card
 	 * @param how       big the jump is
 	 */
-	public Card(int m, boolean d, int mJ) {
+	public Card(int m, int mJ) {
 		magnitude = m;
-		doesJump = d;
 		magnitudeJump = mJ;
 	}
 
@@ -37,13 +35,6 @@ public class Card {
 	 */
 	public void setJMagnitude(int change) {
 		magnitudeJump += change;
-	}
-
-	/**
-	 * @param true if jumps, false if not
-	 */
-	public void setJump(boolean jump) {
-		doesJump = jump;
 	}
 
 	/**

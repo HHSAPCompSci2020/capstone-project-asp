@@ -5,7 +5,6 @@ import java.awt.Point;
  * @author Pranav
  */
 import java.awt.Rectangle;
-import java.util.ArrayList;
 
 import processing.core.PImage;
 
@@ -13,23 +12,25 @@ public class HowToPlay extends Screen {
 
 	private DrawingSurface surface;
 	private Rectangle back;
-	private PImage b, cbutton;
-	private Rectangle credits;
-	private ArrayList<Rectangle> colors = new ArrayList<Rectangle>();
-	private ArrayList<PImage> c = new ArrayList<PImage>();
+	private PImage backbutton, howtocards,howtocontrol,howtopowerups, howtotiles;
+	
+	boolean card,control,powerup,tile;
+	Rectangle cardbutton, controlsbutton,powerupsbutton, tilesbutton;
+	
+
 
 	
 	
 	public void setup() {
-		c.add(surface.loadImage("Assets//ballBLACK.png"));
-		c.add(surface.loadImage("Assets//ballBLUE.png"));
-		c.add(surface.loadImage("Assets//ballGREEN.png"));
-		c.add(surface.loadImage("Assets//ballRED.png"));
-		c.add(surface.loadImage("Assets//ballSWAG.png"));
-		c.add(surface.loadImage("Assets//ballWHITE.png"));
-		c.add(surface.loadImage("Assets//ballYELLOW.png"));
-		b = surface.loadImage("Assets//backbutton.png");
-		cbutton = surface.loadImage("Assets//creditsbutton.png");
+		backbutton = surface.loadImage("Assets//backbutton.png");
+		howtocards = surface.loadImage("Assets//HowtoPlayCards.png");
+		howtocontrol = surface.loadImage("Assets//HowToPlayControls.png");
+		howtopowerups = surface.loadImage("Assets//HowToPlayPowerUps.png");
+		howtotiles = surface.loadImage("Assets//HowToPlayTiles.png");
+		howtotiles.resize(700, 700);
+		howtopowerups.resize(700, 700);
+		howtocards.resize(700, 700);
+		howtocontrol.resize(700, 700);
 	}
 	
 	/*
@@ -42,10 +43,17 @@ public class HowToPlay extends Screen {
 		surface = drawingSurface;
 
 		back = new Rectangle(0, 0, 100, 100);
-		credits = new Rectangle(300, 200, 200, 100);
-		for (int i = 0; i < 7; i++) {
-			colors.add(new Rectangle(50+(i*100), 400, 100, 100));
-		}
+		cardbutton = new Rectangle(300,100,200,100);
+		controlsbutton = new Rectangle(300,200,200,100);
+		powerupsbutton = new Rectangle(300,300,200,100);
+		tilesbutton = new Rectangle(300,400,200,100);
+			
+		card = false;
+		control = false;
+		
+		powerup = false;
+		tile= false;
+		
 	}
 
 	/*
@@ -55,20 +63,37 @@ public class HowToPlay extends Screen {
 
 		surface.pushStyle();
 
-		surface.background(135, 206, 235);
-
-		surface.image(b, back.x, back.y);
-
-		surface.noFill();
-
-		for (int i = 0; i < 7; i++) {
-			surface.rect((float)colors.get(i).getX(), (float)colors.get(i).getY(), (float)colors.get(i).getWidth(), (float)colors.get(i).getHeight());
-			c.get(i).resize((int)colors.get(i).getWidth(), (int)colors.get(i).getHeight());
-			surface.image(c.get(i), (float)colors.get(i).getX(), (float)colors.get(i).getY());
+		surface.background(255, 255, 235);
+		if(!card && !powerup && !tile && !control) {
+			
+			surface.rect(cardbutton.x, cardbutton.y, cardbutton.width, cardbutton.height);
+			
+			surface.rect(controlsbutton.x, controlsbutton.y, controlsbutton.width, controlsbutton.height);
+			surface.rect(powerupsbutton.x, powerupsbutton.y, powerupsbutton.width, powerupsbutton.height);
+			surface.rect(tilesbutton.x, tilesbutton.y, tilesbutton.width,tilesbutton.height);
+			
+			
+			
 		}
 		
-		cbutton.resize(credits.width, credits.height);
-		surface.image(cbutton, credits.x, credits.y);
+		if(card) {
+			surface.image(howtocards, 100, 100);
+		}
+		if(control) {
+			surface.image(howtocontrol, 100, 100);
+		}
+		if(powerup) {
+			surface.image(howtopowerups, 100, 100);
+		}
+		if(tile) {
+			surface.image(howtotiles, 100, 100);
+		}
+		surface.image(backbutton, 0,0);
+
+		
+
+		
+		
 
 
 		surface.popStyle();
@@ -79,22 +104,50 @@ public class HowToPlay extends Screen {
 	 */
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
-		if (back.contains(p))
+		if (back.contains(p)) {
+			
+		
+		
+		
+		if(!card && !powerup && !tile && !control) {
+			
 			surface.switchScreen(ScreenSwitcher.SCREEN1);
-		if (credits.contains(p))
-			surface.switchScreen(ScreenSwitcher.SCREEN5);
-		for (int i = 0; i < 7; i++) {
-			if (colors.get(i).contains(p)) {
-				Player.changeColor(i);
-			}
+			
+		}
+		else {
+			card = false;
+			control = false;
+			tile = false;
+			powerup = false;
 		}
 		
+		}
+		if(cardbutton.contains(p) && !card && !powerup && !tile && !control ) {
+			card = true;
+			
+			
+			
+		}
+       if(controlsbutton.contains(p) && !card && !powerup && !tile && !control) {
+    	   control= true;
+	 		
+		}
+       if(tilesbutton.contains(p) && !card && !powerup && !tile && !control) {
+    	   tile = true;;
+	
+      }
+      if(powerupsbutton.contains(p) && !card && !powerup && !tile && !control) {
+    	  powerup = true;
+      }     
 	}
 
 	@Override
 	public void switchScreen(int i) {
 		// TODO Auto-generated method stub
-
+		
 	}
+
+
+	
 
 }

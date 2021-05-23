@@ -80,7 +80,6 @@ public class LevelSelect extends Screen {
 			j++;
 		}
 
-		b.resize(b.width, b.height);
 		surface.image(b, back.x, back.y);
 		
 		surface.popStyle();

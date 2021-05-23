@@ -9,16 +9,14 @@ public class PowerUp {
 
 	private int magnitude;
 	private int jumpMagnitude;
-	private boolean doesJump;
 
 	/*
 	 * creates a new powerup with different magnitudes, jump magnitudes, and if it
 	 * allows a jump
 	 */
-	public PowerUp(int m, int Jm, boolean j) {
+	public PowerUp(int m, int Jm) {
 		magnitude = m;
 		jumpMagnitude = Jm;
-		doesJump = j;
 	}
 
 	/**
@@ -31,7 +29,6 @@ public class PowerUp {
 	public void affect(Card c) {
 		c.setMagnitude(magnitude);
 		c.setJMagnitude(jumpMagnitude);
-		c.setJump(doesJump);
 	}
 	public int getMagnitude() {
 		return magnitude;
