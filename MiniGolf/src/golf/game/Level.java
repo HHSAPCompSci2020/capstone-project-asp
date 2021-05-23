@@ -34,7 +34,7 @@ public class Level {
 
 		for (int i = 0; i < c.size(); i++) {
 
-			cclone.add(c.get(i));
+			cclone.add(new Card(c.get(i).getMagnitude(), c.get(i).getJMagnitude()));
 
 		}
 		for (int i = 0; i < p.size(); i++) {
