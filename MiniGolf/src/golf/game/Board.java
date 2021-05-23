@@ -74,9 +74,7 @@ public class Board extends Screen {
 		instantiateCards();
 		instantiatePowerUps();
 		this.cleared = cleared;
-		System.out.println(cardMenu.size());
-
-		System.out.println(cardMenu.get(0).getCenterX());
+		
 	}
 	
 	public void setup() {
@@ -224,7 +222,6 @@ public class Board extends Screen {
 			if (surface.isPressed(KeyEvent.VK_D)) {
 				p.move(cardSelected, l, powerupSelected, 3);
 				l.p.remove(powerupSelected);
-				System.out.println("this");
 				l.c.remove(cardSelected);
 				cards.remove(cardSelectedIndex);
 				if (powerupSelected != null)
@@ -294,10 +291,6 @@ public class Board extends Screen {
 			if (cardMenu.get(i).contains(p)) {
 				cardSelected = l.c.get(i);
 				cardSelectedIndex = i;
-				System.out.println("hit");
-				if (cardSelected == null) {
-					System.out.println("?");
-				}
 
 			}
 
@@ -307,7 +300,6 @@ public class Board extends Screen {
 			if (powerUpMenu.get(i).contains(p)) {
 				powerupSelected = l.p.get(i);
 				powerupIndex = i;
-				System.out.println("powerup selected");
 
 			}
 
