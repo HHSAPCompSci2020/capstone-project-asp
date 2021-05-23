@@ -38,10 +38,10 @@ public class HowToPlay extends Screen {
 		howtocontrol.resize(700, 700);
 	}
 	
-	/*
+	/**
 	 * Creates new settings
 	 * 
-	 * @param what to draw the settings on
+	 * @param drawingSurface what to draw the settings on
 	 */
 	public HowToPlay(DrawingSurface drawingSurface) {
 		super(800, 800);
@@ -62,7 +62,7 @@ public class HowToPlay extends Screen {
 		
 	}
 
-	/*
+	/**
 	 * draws the settings
 	 */
 	public void draw() {

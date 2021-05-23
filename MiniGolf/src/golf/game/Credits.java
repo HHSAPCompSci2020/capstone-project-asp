@@ -27,6 +27,7 @@ public class Credits extends Screen{
 		backbutton = new Rectangle(0,0,85,85);
 		
 		}
+	
 	public void setup() {
 		back = surface.loadImage("Assets//backbutton.png");
 		Credits = surface.loadImage("Assets//Credits.png");

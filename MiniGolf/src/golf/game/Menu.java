@@ -64,7 +64,7 @@ public class Menu extends Screen {
 		surface.popStyle();
 	}
 
-	/*
+	/**
 	 * switches the screen if if the screen2 rectangle is clicked
 	 */
 	public void mousePressed() {
