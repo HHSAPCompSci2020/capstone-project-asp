@@ -2,6 +2,9 @@ package golf.game;
 
 import java.awt.Point;
 /**
+/*
+ * 
+ *
  * @author Pranav
  */
 import java.awt.Rectangle;
@@ -14,8 +17,8 @@ public class HowToPlay extends Screen {
 	private Rectangle back;
 	private PImage backbutton, howtocards,howtocontrol,howtopowerups, howtotiles;
 	private PImage controlinstruct, powerupinstruct, tileinstruct, cardinstruct;
-	boolean card,control,powerup,tile;
-	Rectangle cardbutton, controlsbutton,powerupsbutton, tilesbutton;
+	private boolean card,control,powerup,tile;
+	private Rectangle cardbutton, controlsbutton,powerupsbutton, tilesbutton;
 	
 
 
@@ -38,10 +41,10 @@ public class HowToPlay extends Screen {
 		howtocontrol.resize(700, 700);
 	}
 	
-	/*
-	 * Creates new settings
+	/**
+	 * Creates a menu to find instructions on how to play minigolf!
 	 * 
-	 * @param what to draw the settings on
+	 * @param what to draw the our menu on
 	 */
 	public HowToPlay(DrawingSurface drawingSurface) {
 		super(800, 800);
@@ -62,8 +65,8 @@ public class HowToPlay extends Screen {
 		
 	}
 
-	/*
-	 * draws the settings
+	/**
+	 * draws everything based on whats selected
 	 */
 	public void draw() {
 
@@ -108,8 +111,8 @@ public class HowToPlay extends Screen {
 		surface.popStyle();
 	}
 
-	/*
-	 * changes the screen when the back rectangle is clicked
+	/***
+	 * changes the screen when the back rectangle is clicked 
 	 */
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));

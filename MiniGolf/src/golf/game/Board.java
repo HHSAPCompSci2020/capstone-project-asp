@@ -48,7 +48,14 @@ public class Board extends Screen {
 		surface = s;
 
 	}
-
+	/**
+	 * Constructs a board with a specified level and place to draw
+	 * 
+	 * 
+	 * @param drawingSurface surface to draw on
+	 * @param thislevel the level to load up
+	 * @param cleared sets this level to cleared
+	 */
 	public Board(DrawingSurface drawingSurface, int thislevel, boolean[] cleared) {
 		super(800, 800);
 		Level l = new Level("Levels//Level" + thislevel + "//Level" + thislevel + "board.txt",
@@ -71,6 +78,7 @@ public class Board extends Screen {
 
 		System.out.println(cardMenu.get(0).getCenterX());
 	}
+	
 	public void setup() {
 	nextbutton = 	surface.loadImage("Assets//nextbutton.png");
 	backbutton = surface.loadImage("Assets//backbutton.png");
