@@ -45,10 +45,6 @@ public class Level {
 
 	}
 
-	public Level() {
-
-	}
-
 	public void reset() {
 
 		for (int i = 0; i < c.size(); i++) {

@@ -32,10 +32,9 @@ public class Settings extends Screen {
 		cbutton = surface.loadImage("Assets//creditsbutton.png");
 	}
 	
-	/*
-	 * Creates new settings
-	 * 
-	 * @param what to draw the settings on
+	/**
+	 * Creates a new settings screen
+	 * @param drawingSurface the PApplet for the settings screen to use
 	 */
 	public Settings(DrawingSurface drawingSurface) {
 		super(800, 800);
@@ -48,8 +47,8 @@ public class Settings extends Screen {
 		}
 	}
 
-	/*
-	 * draws the settings
+	/**
+	 * draws the settings screen
 	 */
 	public void draw() {
 
@@ -72,7 +71,7 @@ public class Settings extends Screen {
 		surface.popStyle();
 	}
 
-	/*
+	/**
 	 * changes the screen when the back rectangle is clicked
 	 */
 	public void mousePressed() {

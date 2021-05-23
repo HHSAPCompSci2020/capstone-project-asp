@@ -27,12 +27,12 @@ public class Player {
 	private boolean jump;
 	float size;
 
-	/*
+	/**
 	 * creates a new player with the given location
 	 * 
-	 * @param x-location for the player
+	 * @param x x-location for the player
 	 * 
-	 * @param y-location for the player
+	 * @param y y-location for the player
 	 */
 	public Player(int x, int y) {
 		this.x = x;
@@ -76,7 +76,7 @@ public class Player {
 		this.y = y;
 	}
 
-	/***
+	/**
 	 * Moves the player according to the parameters, and executes the correct
 	 * behavior based on the tiles it lands on.
 	 * 
@@ -217,7 +217,13 @@ public class Player {
 	}
 
 	/**
-	 * Draws the player on the parameter PApplet
+	 * Draws the player
+	 * @param surface the PApplet for the player to draw on
+	 * @param width the width of the window
+	 * @param height the hight of the window
+	 * @param moving true if the player is in the process of moving, false otherwise
+	 * @param p the image to use for the player
+	 * @return boolean true if the player is in the process of moving, false otherwise
 	 */
 	public boolean draw(PApplet surface, float width, float height, boolean moving, PImage p) {
 		moveTimer--;
@@ -328,7 +334,9 @@ public class Player {
 		color = c;
 	}
 	
-	
+	/**
+	 * @return int the integer corresponding with the current color
+	 */
 	public int getColor() {
 		return color;
 	}

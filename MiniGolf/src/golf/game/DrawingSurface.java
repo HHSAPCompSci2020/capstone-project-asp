@@ -18,7 +18,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
     public Screen activeScreen;
     public ArrayList<Screen> screens;
 
-    /*
+    /**
      * Creates a new Drawing surface and adds all the screens
      */
     public DrawingSurface() {
@@ -51,9 +51,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
     }
 
-    /*
-     * 
-     */
+
     public void settings() {
         // size(DRAWING_WIDTH, DRAWING_HEIGHT, P2D);
         size(activeScreen.DRAWING_WIDTH, activeScreen.DRAWING_HEIGHT);
@@ -78,14 +76,14 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
         popMatrix();
     }
 
-    /*
+    /**
      * when a key is pressed add the key to the keys ArrayList
      */
     public void keyPressed() {
         keys.add(keyCode);
     }
 
-    /*
+    /**
      * when a key is released remove this key from the ArrayList
      */
     public void keyReleased() {
@@ -93,46 +91,44 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
         	keys.remove(new Integer(keyCode));
     }
 
-    /*
+    /**
      * Checks if a the key ArrayList contains a specific key
-     * @param The key to check if it is contained in the ArrayList
-     * @return true if the key is in the ArrayList
+     * @param code The key to check if it is contained in the ArrayList
+     * @return boolean true if the key is in the ArrayList
      */
     public boolean isPressed(Integer code) {
         return keys.contains(code);
     }
 
-    /*
+    /**
      * Calls the mousePressedMethod on the current screen
      */
     public void mousePressed() {
         activeScreen.mousePressed();
     }
 
-    /*
+    /**
      * calls the mouseMoved method on the current screen
      */
     public void mouseMoved() {
         activeScreen.mouseMoved();
     }
 
-    /*
+    /**
      * calls the mouseDragged method on the current screen
      */
     public void mouseDragged() {
         activeScreen.mouseDragged();
     }
 
-    /*
+    /**
      * calls the mouseReleased method on the current screen
      */
     public void mouseReleased() {
         activeScreen.mouseReleased();
     }
 
-    /*
-     * 
-     */
+ 
     public Point assumedCoordinatesToActual(Point assumed) {
         return new Point((int)(assumed.getX()/ratioX), (int)(assumed.getY()/ratioY));
     }

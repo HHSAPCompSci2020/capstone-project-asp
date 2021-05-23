@@ -19,21 +19,22 @@ public class Menu extends Screen {
 	private PImage background;
 	private Music m = new Music();
 	private Rectangle howtoplay;
+	private PImage h;
 	
 	public void setup() {
 		lSelect = surface.loadImage("Assets//levelselect.png");
 		set = surface.loadImage("Assets//settings.png");
 		background = surface.loadImage("Assets//Background.png");
 		background.resize(this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
-		
-		
+		lSelect.resize(200, 100);
+		h = surface.loadImage("Assets//howtoplaybutton.png");
 	}
 	
 	
-	/*
+	/**
 	 * creates a new menu
 	 * 
-	 * @param the surface to draw on
+	 * @param drawingSurface the surface to draw on
 	 */
 	public Menu(DrawingSurface drawingSurface) {
 		super(800, 800);
@@ -41,12 +42,12 @@ public class Menu extends Screen {
 
 		settings = new Rectangle(300, 500, 200, 100);
 		levelSelect = new Rectangle(300, 200, 200, 100);
-		howtoplay = new Rectangle(300,300,200,100);
+		howtoplay = new Rectangle(300,350,200,100);
 		m.musicStopped();
 			}
 
-	/*
-	 * draw the menu
+	/**
+	 * draws the menu
 	 */
 	
 	public void draw() {
@@ -56,10 +57,9 @@ public class Menu extends Screen {
 		surface.background(255,255,255);
 		surface.image(background, 0, 0);
 		
-		
+		surface.image(h, howtoplay.x, howtoplay.y);
 		surface.image(set, settings.x, settings.y);
 		surface.image(lSelect, levelSelect.x, levelSelect.y);
-		surface.rect(300, 300, 200, 100);
 
 		surface.popStyle();
 	}
@@ -79,10 +79,12 @@ public class Menu extends Screen {
 		}
 	}
 
+
 	@Override
 	public void switchScreen(int i) {
 		// TODO Auto-generated method stub
-
+		
 	}
+
 
 }

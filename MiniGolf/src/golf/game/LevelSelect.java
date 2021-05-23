@@ -31,10 +31,9 @@ public class LevelSelect extends Screen {
 		background.resize(800, 800);
 	}
 	
-	/*
-	 * Creates a new levelSelect
-	 * 
-	 * @param surface to draw on
+	/**
+	 * creates a new levelSelect
+	 * @param drawingSurface surface for it to draw on
 	 */
 	public LevelSelect(DrawingSurface drawingSurface) {
 		super(800, 800);
@@ -45,7 +44,7 @@ public class LevelSelect extends Screen {
 		back = new Rectangle(0, 0, 100, 100);
 	}
 
-	/*
+	/**
 	 * Draws the Level Select
 	 */
 	public void draw() {
@@ -85,8 +84,8 @@ public class LevelSelect extends Screen {
 		surface.popStyle();
 	}
 
-	/*
-	 * switches the screen if the level1 rectangle is clicked on
+	/**
+	 * Switches the screen if a level rectangle is clicked on
 	 */
 	public void mousePressed() {
 		Board b = new Board(surface);
