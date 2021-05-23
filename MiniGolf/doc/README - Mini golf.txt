@@ -3,7 +3,7 @@
 
 Card Mini Golf
 Authors: Pranav Rawat, Savio Esmailzadeh, Ansel Liu
-Revision: 5/13/2021
+Revision: 5/22/2021
 
 
 Introduction: 
@@ -34,10 +34,6 @@ Yes, you first have to select a card by clicking on one, and then pressing an ar
 
 
 
-
-
-
-
 Features List (THE ONLY SECTION THAT CANNOT CHANGE LATER):
 Must-have Features:
 *  Music and sound effects - Different themes for the menu and gameplay, sound effects for reaching the goal, hitting the ball etc. 
@@ -52,7 +48,7 @@ Want-to-have Features:
 * Rebounds (physics animations and behavior)-The ball will be able to keep its momentum when it hits a wall, and go the opposite direction.
 *  Jump (in a 2d space)-Because the game is hosted in a 2D space where the player is looking above the grid, when the ball ‘jumps’, it will appear bigger as it goes up, because it is ‘approaching’ the camera.
 * Customization - In the settings menu, there will be an option to change the color of the ball. More colors will be unlocked as the player progresses in the game. 
-* Save progress-Levels unlocked and created will be saved in the game,
+* Save progress-Levels unlocked and created will be saved in the game
 
 
 Stretch Features:
@@ -93,6 +89,8 @@ PowerUp
 Contains a list of methods that modify the behavior of the ball, called through Player which executes the change. 
 Card
 Contains fields that gives the distance to move the ball and whether it lifts the ball up or not (“jump”)
+HowToPlay
+Contains images that explain the mechanics of the game, including the cards, tiles, powerups and the controls.
 
 
 Credits:
@@ -100,38 +98,26 @@ Credits:
 * List the group members and describe how each member contributed to the completion of the final program. This could be classes written, art assets created, leadership/organizational skills exercises, or other tasks. Initially, this is how you plan on splitting the work.
 * Give credit to all outside resources used. This includes downloaded images or sounds, external java libraries, parent/tutor/student coding help, etc.]
 
-Music from Phneas and Ferb
-Inspired by Golf Peaks
-Uses the Processing Library and JSound Library
-Uses code from parts of the Processing screen switching demo(Shelby) as well as code from Recursion 2D Arrays(previous lab)
-Savio: Player, Menu, Card
-Pranav: Board, Level, Powerup
-Ansel: Music, Level Select, Settings
-
-
-
 
 
 
 Work Distribution:
+Pranav: Board, Level, PowerUp, HowToPlay
+Savio: Player, Menu, Card
+Ansel: Music, LevelSelect, Settings, Assets
 
 
-Hardest: Board, LevelMaker, LevelSelect
+Some Code Taken from Processing Screen Switching Demo, Music, and Recursion 2D Arrays
 
 
-Medium: Player, Main, Music, Settings, level
+Uses Processing and JSound Library
 
 
-Easy: Tile, PowerUp, Card, Credits
+Menu Art:Jujudude(found on Reddit)
+Level & Level Select Background: Khanecz
 
 
-//THIS IS VERY INACCURATE
-Ansel: LevelSelect, Menu, Settings, Assets(pictures)
+Music Used: Intimate-Fizzd, Coconut Mall-Mario Kart OST, Tad On-The Past
 
 
-Pranav: Board, Level, Credits,  PowerUp, LevelMaker(stretch)?
-
-
-Savio: Player, Card, Main, Music, LevelMaker(stretch[a])? 
-
-
+Inspired by Golf Peaks

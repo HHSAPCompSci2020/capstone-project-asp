@@ -30,10 +30,19 @@ public class PowerUp {
 		c.setMagnitude(magnitude);
 		c.setJMagnitude(jumpMagnitude);
 	}
+	/***
+	 * 
+	 * @return the movement magnitue of the powerup
+	 */
 	public int getMagnitude() {
 		return magnitude;
 		
 	}
+	/**
+	 * 
+	 * @return Jump magnitude of powerup
+	 */
+	
 	public int getJMagnitude() {
 		return jumpMagnitude;
 		
