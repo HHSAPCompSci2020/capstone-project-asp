@@ -141,18 +141,10 @@ public class Board extends Screen {
 		isMoving = p.draw(surface, this.DRAWING_WIDTH, this.DRAWING_HEIGHT, isMoving, playerImages.get(p.getColor()));
 		
 		surface.noFill();
-		surface.rect(next.x, next.y, next.width, next.height, 10, 10, 10, 10);
-		surface.rect(back.x, back.y, back.width, back.height);
 
-		surface.fill(0);
-		String str = "Next";
-		float w = surface.textWidth(str);
-		surface.text(str, next.x + next.width / 2 - w / 2, next.y + next.height / 2);
-		str = "Back";
-		w = surface.textWidth(str);
-		surface.text(str, back.x + back.width / 2 - w / 2, back.y + back.height / 2);
-
+		
 	//	surface.fill(0, 255, 0);
+		if (level < 20)
 		surface.image(nextbutton, 715, 715);
 		surface.image(backbutton, 0, 715);
 		surface.fill(255,255,255);
@@ -280,6 +272,7 @@ public class Board extends Screen {
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY));
 		if (next.contains(p) && this.p.isCleared() && !isMoving) {
+			if (level < 20)
 			this.switchScreen(3);
 		}
 		if (back.contains(p)) {
