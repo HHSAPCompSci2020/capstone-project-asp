@@ -44,7 +44,9 @@ public class Level {
 		}
 
 	}
-
+/**
+ * sets all of the values in c and p to their original states
+ */
 	public void reset() {
 
 		for (int i = 0; i < c.size(); i++) {
@@ -349,6 +351,10 @@ public class Level {
 		}
 
 	}
+	/**Finds the Player and creates it at the position it is found
+	 * 
+	 * @return a player at the position where a p is found
+	 */
 
 	public Player findPlayer() {
 		for (int i = 0; i < tiles.length; i++) {
