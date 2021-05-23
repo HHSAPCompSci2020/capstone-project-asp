@@ -18,6 +18,7 @@ public class Menu extends Screen {
 	private PImage lSelect, set;
 	private PImage background;
 	private Music m = new Music();
+	private Rectangle howtoplay;
 	
 	public void setup() {
 		lSelect = surface.loadImage("Assets//levelselect.png");
@@ -40,6 +41,7 @@ public class Menu extends Screen {
 
 		settings = new Rectangle(300, 500, 200, 100);
 		levelSelect = new Rectangle(300, 200, 200, 100);
+		howtoplay = new Rectangle(300,300,200,100);
 		m.musicStopped();
 			}
 
@@ -53,11 +55,11 @@ public class Menu extends Screen {
 		
 		surface.background(255,255,255);
 		surface.image(background, 0, 0);
-
-		set.resize(settings.width, settings.height);
-		lSelect.resize(levelSelect.width, levelSelect.height);
+		
+		
 		surface.image(set, settings.x, settings.y);
 		surface.image(lSelect, levelSelect.x, levelSelect.y);
+		surface.rect(300, 300, 200, 100);
 
 		surface.popStyle();
 	}
@@ -72,6 +74,9 @@ public class Menu extends Screen {
 		}
 		if (levelSelect.contains(p))
 			surface.switchScreen(ScreenSwitcher.SCREEN3);
+		if(howtoplay.contains(p)) {
+			surface.switchScreen(5);
+		}
 	}
 
 	@Override
