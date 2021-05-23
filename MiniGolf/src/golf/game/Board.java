@@ -27,8 +27,7 @@ public class Board extends Screen {
 	private Player p;
 	private int level;
 	private ArrayList<Rectangle2D.Float> powerUpMenu = new ArrayList<Rectangle2D.Float>();
-	private PImage nextbutton;
-	private PImage backbutton;
+	private PImage nextbutton, backbutton;
 	private boolean[] cleared;
 	private ArrayList<PImage> cards = new ArrayList<PImage>();
 	private ArrayList<PImage> powerups = new ArrayList<PImage>();
@@ -259,6 +258,8 @@ public class Board extends Screen {
 		}
 		if (!p.isCleared() && l.c.size() == 0) {
 			l.reset();
+			powerups.clear();
+			powerUpMenu.clear();
 			this.instantiateCards();
 			this.instantiatePowerUps();
 			p.reset();

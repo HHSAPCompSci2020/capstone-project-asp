@@ -15,7 +15,7 @@ public class Menu extends Screen {
 	private DrawingSurface surface;
 	private Rectangle settings;
 	private Rectangle levelSelect;
-	private PImage lSelect, set;
+	private PImage lSelect, set, title;
 	private PImage background;
 	private Music m = new Music();
 	private Rectangle howtoplay;
@@ -28,6 +28,8 @@ public class Menu extends Screen {
 		background.resize(this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
 		lSelect.resize(200, 100);
 		h = surface.loadImage("Assets//howtoplaybutton.png");
+		title = surface.loadImage("Assets//minigolftitle.png");
+		title.resize(300, 100);
 	}
 	
 	
@@ -59,6 +61,7 @@ public class Menu extends Screen {
 		
 		surface.image(h, howtoplay.x, howtoplay.y);
 		surface.image(set, settings.x, settings.y);
+		surface.image(title, 250, 60);
 		surface.image(lSelect, levelSelect.x, levelSelect.y);
 
 		surface.popStyle();

@@ -39,7 +39,7 @@ public class Level {
 		}
 		for (int i = 0; i < p.size(); i++) {
 
-			pclone.add(p.get(i));
+			pclone.add(new PowerUp(p.get(i).getMagnitude(), p.get(i).getJMagnitude()));
 
 		}
 
@@ -48,25 +48,27 @@ public class Level {
  * sets all of the values in c and p to their original states
  */
 	public void reset() {
-
-		for (int i = 0; i < c.size(); i++) {
-
-			c.remove(i);
-
-		}
-		for (int i = 0; i < p.size(); i++) {
-
-			p.remove(i);
-
-		}
+		
+		c.clear();
+		p.clear();
+//		for (int i = 0; i < c.size(); i++) {
+//
+//			c.remove(i);
+//
+//		}
+//		for (int i = 0; i < p.size(); i++) {
+//
+//			p.remove(i);
+//
+//		}
 		for (int i = 0; i < cclone.size(); i++) {
 
-			c.add(cclone.get(i));
+			c.add(new Card(cclone.get(i).getMagnitude(), cclone.get(i).getJMagnitude()));
 
 		}
 		for (int i = 0; i < pclone.size(); i++) {
 
-			p.add(pclone.get(i));
+			p.add(new PowerUp(pclone.get(i).getMagnitude(), pclone.get(i).getJMagnitude()));
 
 		}
 
